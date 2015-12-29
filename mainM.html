@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!--在网站HTML文件的开头，增加viewport meta标签告诉浏览器视口宽度等于设备屏幕宽度，且不进行初始缩放。-->
+<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0" name="viewport"> 
+<!--<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes" />-->
+<!--这meta的作用就是删除默认的苹果工具栏和菜单栏。content有两个值”yes”和”no”,当我们需要显示工具栏和菜单栏时，这个行meta就不用加了，默认就是显示。-->
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<!--作用是控制状态栏显示样式-->
+<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+<!--手机号码不被显示为拨号链接-->
+<meta content="telephone=no" name="format-detection" />	
+<title></title>
+<!--公共CSS样式-->
+<link rel="stylesheet" href="css/commonM.css" />
+
+<!--插件样式-->
+
+<!--电子书CSS样式-->
+<link rel="stylesheet" href="css/indexM.css" />
+<!--JQ插件-->
+<!--<script src="js/jquery.js"></script>-->
+<script src="js/jquery-2.1.1.min.js"></script>
+<script src="js/jqmd5.js"></script>
+<!--公用JS文件-->
+<script src="js/myTool.js"></script>
+<!--电子书JS文件-->
+<script src="js/main.js"></script>
+
+
+</head>
+
+<body >
+  <header id="unit" >
+  	 <a id="pre"></a>
+  	 Unit1
+  	 <a id="next"></a>
+  </header>
+  <!--主体内容 视频部分-->
+  <div class="content " id="video">
+  	 <ul id="videoList">
+  	 	  <li>
+  	 	  	<img src="img/danci.png" width="32" height="31"/>
+  	 	  	<h3>1111111</h3>
+  	 	  </li>
+  	 	  <li>
+  	 	  	<img src="img/danci.png" width="32" height="31"/>
+  	 	  	<h3>1111111</h3>
+  	 	  </li>
+  	 	  <li>
+  	 	  	<img src="img/danci.png" width="32" height="31"/>
+  	 	  	<h3>1111111</h3>
+  	 	  </li>
+  	 	  <li>
+  	 	  	<img src="img/danci.png" width="32" height="31"/>
+  	 	  	<h3>1111111</h3>
+  	 	  </li>
+  	 	  <li>
+  	 	  	<img src="img/danci.png" width="32" height="31"/>
+  	 	  	<h3>1111111</h3>
+  	 	  </li>
+  	 </ul>
+  	 
+  </div>
+  <!--主体内容 视频部分-->
+  <div class="content hide" id="audio">
+     <div class="control">
+     	 <audio></audio>
+     	 <!--返回按钮-->
+     	 <div class="returnBtn"></div>
+     	 <!--当前曲目名称-->
+     	 <span>11111</span>
+     	 <!--下一首-->
+     	 <div class="nexTone"></div>
+     	 <!--播放按钮-->
+     	 <div class="ctrlBtn"></div>
+     </div>
+     <!--进度条部分-->
+     <div class="processBar">
+     	   <!--当前时间轴-->
+     	  <div class="curBar"></div>
+     </div>
+     <ul id="audioList">
+     	 <li class="on">1111</li>
+     	 <li>1111</li>
+     	 <li>1111</li>
+     	 <li>1111</li>
+     	 <li>1111</li>
+     	 <li>1111</li>
+     	 <li>1111</li>
+     	 <li>1111</li>
+     </ul>
+  </div>   
+  <footer>
+  	 <ul>
+  	 	<li id="videoBtn" class="on">
+  	 		<img src="img/shipin-focus.png" width="24" height="35"/>
+  	 	</li>
+  	 	<li id="audioBtn">
+  	 		<img src="img/yinpin.png" width="24" height="35"/>
+  	 	</li>
+  	 	<li id="shareBtn">
+  	 		<img src="img/fenxiang.png" width="24" height="35"/>
+  	 	</li>
+  	 </ul>	 
+  </footer>
+</body>
+</html>

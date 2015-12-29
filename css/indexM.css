@@ -1,0 +1,177 @@
+header#head,header#unit{
+	width: 100%;
+	height: 31px;
+	background: #212737;
+	text-align: center;
+	line-height: 31px;
+	color: #FFFFFF;
+	font-size: 16px;
+	position: relative;
+}
+header#head a,header#unit a#pre{
+	display: block;
+	width: 60px;
+	height: 31px;
+    position: absolute;
+	text-align: right;
+	color: #FFFFFF;
+	background: url(../img/xiangshang.png) no-repeat 0px 0px;
+	background-size: 31px 31px;
+}
+header#head a:active{
+	background: url(../img/xiangshang-focus.png) no-repeat 0px 0px;
+	background-size: 31px 31px;
+}
+header#unit a#pre:active{
+	background: url(../img/xiangshang-focus.png) no-repeat 0px 0px;
+	background-size: 31px 31px;
+}
+header#unit a#next{
+	display: block;
+	width: 60px;
+	height: 31px;
+    position: absolute;
+    right: 0px;
+    top:0px;
+	background: url(../img/xiangxia.png) no-repeat 25px 0px;
+	background-size: 31px 31px;
+}
+header#unit a#next:active{
+	background: url(../img/xiangxia-focus.png) no-repeat 25px 0px;
+	background-size: 31px 31px;
+}
+footer{
+	width: 100%;
+	height: 46px;
+	background: url(../img/dibudaohang-big.png);
+	background-size: 2px 46px;
+	position: fixed;
+	bottom: 0;
+}
+footer ul li{
+	float: left;
+	height: 92px;
+	color: #FFFFFF;
+	text-align: center;
+	font-size: 14px;
+}
+footer ul li img{
+	margin-top: 7px;
+}
+.content{
+	width: 100%;
+	background: #ececec;
+	overflow: auto;
+}
+.content h2{
+	display: block;
+	width: 95%;
+	line-height: 37px;
+	border-bottom:1px dashed #8e8e8e ;
+	text-align: center;
+	margin: 0 auto;
+	font-size: 14px;
+}
+
+.icon{
+	width: 71px;
+	height: 71px;
+	border: 0;
+	/*margin: 0px auto 0px auto;*/
+}
+.content ul#applist{
+	padding-top: 50px;
+}
+.content ul#applist li{
+	float: left;
+	text-align: center;
+	width: 73px;
+	height: 98px;
+	position: relative;
+}
+.content ul#videoList{
+	
+}
+.content ul#videoList li{
+	padding-left: 10px;
+	line-height: 41px;
+	border-bottom: 1px solid #d8d8d8;
+    margin-bottom: 5px;
+    background: #FFFFFF;
+}
+.content ul#videoList li img{
+	float: left;
+	margin-top: 5px;
+	margin-right: 10px;
+}
+footer ul li.on{
+	background: url(../img/dibudaohang-focus.png);
+	background-size: 5px 46px;
+}
+/*音频部分*/
+.control{
+	width: 100%;
+	height: 31px;
+	line-height: 31px;
+	color: #FFFFFF;
+	font-size: 14px;
+	background:url(../img/yinpinbofangtiao-focus.png) no-repeat #6974e0;
+	background-size: 320px 31px;
+}
+.control .returnBtn{
+	width: 31px;
+	height: 31px;
+	float: left;
+	background:url(../img/yinpinxiangshang.png) no-repeat;
+	background-size: 31px 31px;
+}
+.control .returnBtn:active{
+	background:url(../img/yinpinxiangshang-focus.png) no-repeat;
+	background-size: 31px 31px;
+}
+.control span{
+	margin-left: 18px;
+}
+.control .nexTone{
+	width: 15px;
+	height: 31px;
+	float: right;
+	background: url(../img/xiayiqu.png) no-repeat 0px 9px;
+	background-size:15px 15px ;
+	margin-right: 18px;
+}
+.control .ctrlBtn{
+	width: 13px;
+	height: 31px;
+	float: right;
+	background: url(../img/bofang.png) no-repeat 0px 8px;
+	background-size:13px 17px ;
+	margin-right: 18px;	
+}
+.processBar{
+	width: 100%;
+	height: 2px;
+	background:#bdbbed ;
+}
+.processBar .curBar{
+	width: 100px;
+	height: 2px;
+	background:#fa9640;
+}
+.content ul#audioList li{
+	padding-left: 10px;
+	line-height: 41px;
+	border-bottom: 1px solid #d8d8d8;
+    margin-bottom: 5px;
+    color:#6c6c6c;
+    font-size: 14px;
+    background:url(../img/yinfu.png) no-repeat #FFFFFF 8px 10px;
+    background-size:20px 19px;
+    text-indent: 47px;
+}
+.content ul#audioList li.on{
+	color:#f99740;
+	background:url(../img/yinfu_focus.png) no-repeat #FFFFFF 8px 10px;
+    background-size:20px 19px;
+}
+
