@@ -4,7 +4,7 @@ $(function(){
 	$.ajax(server+"video_list.data").success(function(data){
 		unitArr = eval("("+data+")");
 		unitArr.forEach(function(uItem){
-			var item = $("<a class='navItem' href='javascript:void(0)'>"+uItem.title+"</a>");
+			var item = $("<a href='javascript:void(0)'><div class='navItem'>"+uItem.title+"</div></a>");
 			$('.navigator').append(item);
 			item.click(function(evt){
 				setContent(unitArr.indexOf(uItem));
@@ -28,10 +28,10 @@ $(function(){
 			}
 		}
 		var data = unitArr[index];
-		$('.container.title').html(data.title);
+		$('.unitTitle').html(parseTitle(data.title));
 		$('.list').empty();
 		data.videos.forEach(function(item){
-			var videoItem = $("<a href='http://www.baidu.com'><div class='videoItem'><img class='videoIcon' src='"+
+			var videoItem = $("<a href='http://www.baidu.com' target='_blank'><div class='videoItem'><img class='videoIcon' src='"+
 				item.cover+"'/><div class='videoTitle'>"+
 				item.title+"</div><div class='arrow'></div><img class='videoTip' src='"+
 				getIconByType(item.type)+"'/></div></a>");
@@ -41,5 +41,29 @@ $(function(){
 	
 	function getIconByType(type){
 		return "img/type"+type+".png";
+	}
+	
+	function parseTitle(txt){
+		var arr = txt.split(" ");
+		var num = arr[arr.length-1];
+		var isNum = true;
+		for(var i=0; i<num.length; i++){
+			var n = num.charAt(i);
+			if(n<'0' || n>'9'){
+				isNum = false;
+				break;
+			}
+		}
+		var ret="";
+		for(var i=0; i<arr.length-1; i++){
+			ret += arr[i];
+			ret += " ";
+		}
+		if(isNum){
+			ret += ('<span style="color:#1fb3ae;">'+num+'<span>');
+		}else{
+			ret += num;
+		}
+		return ret;
 	}
 })
