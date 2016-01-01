@@ -1,0 +1,283 @@
+.container{
+	padding: 44px 0px 44px 0px;
+	max-width: 1024px;
+	width: 100%;
+	margin: 0 auto;
+	margin-top: 44px;
+}
+
+.videoMain{
+	display: inline-block;
+	width: 660px;
+	border: solid 1px #cecece;
+	background-color: white;
+	border-radius: 2px;
+}
+
+.video{
+	margin-left: 20px;
+	margin-top: 0px;
+}
+
+.videoList{
+	display: inline-block;
+	vertical-align: top;
+	margin-left: 5px;
+	width: 350px;
+	border: solid 1px #cecece;
+	background-color: #f0f0f0;
+	border-radius: 2px;
+}
+
+.timeLine{
+	margin-top: -4px;
+	margin-left: 20px;
+	width: 615px;
+	height: 4px;
+	background-color: #737373;
+}
+
+.timePlayed{
+	margin-left: 0px;
+	margin-top: 0px;
+	width: 0px;
+	height: 100%;
+	background-color: #f06e00;
+}
+
+.controlBar{
+	position: relative;
+	margin-left: 20px;
+	margin-top: 0px;
+	width: 615px;
+	height: 36px;
+	background: transparent url(../img/control_bg.png) no-repeat;
+	background-size: 100% 100%;
+}
+
+#btnPlayPause{
+	cursor: pointer;
+	position: absolute;
+	width: 50px;
+	height: 100%;
+}
+
+.videoPlay{
+	background: transparent url(../img/v_play.png) no-repeat center center;
+	background-size: 14px 16px;
+}
+
+.videoPause{
+	background: transparent url(../img/v_pause.png) no-repeat center center;
+	background-size: 14px 16px;
+}
+
+.timeDes{
+	position: absolute;
+	left: 70px;
+	top: 0px;
+	height: 36px;
+	line-height: 36px;
+	font-size: 14px;
+	color: #848484;
+}
+
+.timeDesPlayed{
+	color: #e0e0e0;
+}
+
+.timeDesTotal{
+	color: #848484;
+}
+
+#btnVolumn{
+	cursor: pointer;
+	position: absolute;
+	left: 390px;
+	top: 0px;
+	width: 30px;
+	height: 36px;
+	background: transparent url(../img/v_volume.png) no-repeat center center;
+	background-size: 22px 21px;
+}
+
+.volumnOn{
+	opacity: 1;
+}
+
+.volumnOff{
+	opacity: 0.5;
+}
+
+.volumnLine{
+	position: absolute;
+	left: 425px;
+	top: 15px;
+	height: 6px;
+	width: 82px;
+	border: solid 1px #1f1f1f;
+	border-radius: 3px;
+	background-color: #313131;
+}
+.volumnTrack{
+	position: absolute;
+	left: 425px;
+	top: 15px;
+	height: 6px;
+	width: 0px;
+	border: solid 1px #f38a33;
+	border-radius: 3px;
+	background-color: #db6401;
+}
+.volumnThumb{
+	cursor: pointer;
+	position: absolute;
+	width: 12px;
+	height: 12px;
+	left: 419px;
+	top: 13px;
+	border-radius: 50%;
+	background-color: white;
+}
+.quality{
+	position: absolute;
+	left: 515px;
+	top: 8px;
+	width: 34px;
+	height: 22px;
+	line-height: 22px;
+	background-color: #303030;
+	border-radius: 2px;
+	font-size: 12px;
+	color: #979797;
+	text-align: center;
+}
+.setting{
+	position: absolute;
+	left: 554px;
+	top: 0px;
+	width: 25px;
+	height: 100%;
+	background: transparent url(../img/v_setting.png) no-repeat center center;
+	background-size: 17px 17px;
+}
+.fullscreen{
+	position: absolute;
+	left: 580px;
+	top: 0px;
+	width: 25px;
+	height: 100%;
+	background: transparent url(../img/v_fullscreen.png) no-repeat center center;
+	background-size: 17px 16px;
+}
+
+.videoBottom{
+	position: relative;
+	margin-left: 20px;
+	margin-top: 0px;
+	width: 615px;
+	height: 50px;
+}
+.qrcode{
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	bottom: 0px;
+}
+.qrcodeIcon{
+	display: inline-block;
+	width: 30px;
+	height: 100%;
+	background: transparent url(../img/v_qrcode.png) no-repeat center center;
+	background-size: 20px 20px;
+}
+.qrCodeTxt{
+	display: inline-block;
+	width: 70px;
+	height: 50px;
+	line-height: 50px;
+	color: #666666;
+	font-size: 16px;
+	text-align: center;
+	vertical-align: top;
+}
+.qrCodeArraw{
+	display: inline-block;
+	width: 18px;
+	height: 100%;
+	background: transparent url(../img/v_arraw.png) no-repeat center center;
+	background-size: 12px 7px;
+}
+
+.unitLineV{
+	display: inline-block;
+	margin-left: 10px;
+	margin-top: 10px;
+	width: 6px;
+	height: 18px;
+	border-radius: 2px;
+	background-color: #1fb3ae;
+}
+.unitName{
+	display: inline-block;
+	margin-left: 4px;
+	height: 18px;
+	line-height: 18px;
+	width: 300px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	font-size: 16px;
+}
+.unitLineH{
+	display: block;
+	margin-left: 10px;
+	margin-top: 2px;
+	width: 330px;
+	height: 1px;
+	background-color: #d6d6d6;
+}
+.list{
+	margin-top: 4px;
+	width: 100%;
+}
+.videoItem{
+	margin-top: 1px;
+	width: 100%;
+	height: 90px;
+	position: relative;
+	background-color: white;
+}
+.videoItemIcon{
+	position: absolute;
+	left: 12px;
+	top: 8px;
+	width: 100px;
+	height: 76px;
+}
+.videoItenMask{
+	position: absolute;
+	left: 12px;
+	top: 8px;
+	width: 100px;
+	height: 76px;
+	background: transparent url(../img/v_mask.png) no-repeat;
+	background-size: 100% 100%;
+}
+.videoItemName{
+	position: absolute;
+	left: 125px;
+	top: 15px;
+	width: 214px;
+	height: 68px;
+	font-size: 16px;
+	color: #5c5c5c;
+}
+.videoItemTip{
+	position: absolute;
+	left: 11px;
+	top: 7px;
+}
+.videoItemOn{
+	background-color: #dbdbdb;
+}

@@ -1,0 +1,35 @@
+{
+	title: "Unit 01",
+	videos:[
+		{
+			title:"Rainbow Song",
+			type:1,
+			url:"asset/test.mp4",
+			icon:"asset/video.png"
+		},
+		{
+			title:"Rainbow Song",
+			type:2,
+			url:"asset/test.mp4",
+			icon:"asset/video.png"
+		},
+		{
+			title:"Rainbow Song",
+			type:3,
+			url:"asset/test.mp4",
+			icon:"asset/video.png"
+		},
+		{
+			title:"Rainbow Song",
+			type:4,
+			url:"asset/test.mp4",
+			icon:"asset/video.png"
+		},
+		{
+			title:"Rainbow Song",
+			type:5,
+			url:"asset/test.mp4",
+			icon:"asset/video.png"
+		}
+	]
+}

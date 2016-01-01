@@ -25,6 +25,15 @@ body{
 	background-size: 100% 100%;
 }
 
+.button{
+	cursor: pointer;
+}
+
+.button:hover{
+	filter: grayscale(1);
+	-webkit-filter: grayscale(0.2);
+}
+
 #close:hover{
 	filter: grayscale(0.2);
 	-webkit-filter: grayscale(0.2);

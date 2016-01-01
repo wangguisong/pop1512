@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>视频</title>
+		<script src="js/jquery-2.1.1.min.js"></script>
+		<script src="js/jqmd5.js"></script>
+		<script src="js/myTool.js"></script>
+		<script src="js/video.js"></script>
+		<link href="css/video.css" rel="stylesheet" />
+		<link href="css/common.css" rel="stylesheet" />
+	</head>
+	<body>
+		<div class="head">
+			<a id="close" href="javascript:void(null)" onclick="closeWindow()"></a>
+			<div class="title">共享资源</div>
+		</div>
+		<div class="container">
+			<div class="videoMain">
+				<video class="video" width="615px" autoplay></video>
+				<div class="timeLine">
+					<div class="timePlayed"></div>
+				</div>
+				<div class="controlBar">
+					<div id="btnPlayPause" class="button videoPlay"></div>
+					<div class="timeDes">
+						<span class="timeDesPlayed">--:--</span>
+						/
+						<span class="timeDesTotal">--:--</span>
+					</div>
+					<div id="btnVolumn" class="button volumnOn"></div>
+					<div class="volumnLine"></div>
+					<div class="volumnTrack"></div>
+					<div class="volumnThumb"></div>
+					<div class="button quality">高清</div>
+					<div class="button setting"></div>
+					<div class="button fullscreen"></div>
+				</div>
+				<div class="videoBottom">
+					<div class="button qrcode">
+						<div class="qrcodeIcon"></div>
+						<div class="qrCodeTxt">扫码观看</div>
+						<div class="qrCodeArraw"></div>
+					</div>
+				</div>
+			</div>
+			<div class="videoList">
+				<div class="unitLineV"></div>
+				<div class="unitName"></div>
+				<div class="unitLineH"></div>
+				<div class="list">
+					
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
