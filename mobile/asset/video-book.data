@@ -1,0 +1,30 @@
+[
+	{
+		title: "pop ready 1",
+		icon: "asset/book.png"
+	},
+	{
+		title: "pop ready 2",
+		icon: "asset/book.png"
+	},
+	{
+		title: "pop ready 3",
+		icon: "asset/book.png"
+	},
+	{
+		title: "pop ready 4",
+		icon: "asset/book.png"
+	},
+	{
+		title: "pop ready 5",
+		icon: "asset/book.png"
+	},
+	{
+		title: "pop ready 6",
+		icon: "asset/book.png"
+	},
+	{
+		title: "pop ready 7",
+		icon: "asset/book.png"
+	}
+]

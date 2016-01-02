@@ -49,6 +49,7 @@ footer{
 	bottom: 0;
 }
 footer ul li{
+	width: 33%;
 	float: left;
 	height: 92px;
 	color: #FFFFFF;

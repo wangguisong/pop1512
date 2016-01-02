@@ -1,0 +1,124 @@
+.indexContent{
+	padding: 0px 12px 0px 12px;
+}
+.catTitle{
+	margin-top: 15px;
+	width: 100%;
+	text-align: center;
+	font-size: 14px;
+	color: #6e6e6e;
+}
+.indexLine{
+	margin-top: 5px;
+	border-bottom: dashed 1px #8e8e8e;
+}
+.indexList{
+	margin-top: 20px;
+}
+.bookItem{
+	width: 80px;
+	margin-bottom: 10px;
+	display: inline-block;
+	text-align: center;
+}
+.bookCover{
+	width: 77px;
+	margin: 0 auto;
+}
+.bookTitle{
+	margin-top: 5px;
+	text-align: center;
+	font-size: 10px;
+	color: #6e6e6e;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.audioPlayPause{
+	position: absolute;
+	width: 40px;
+	height: 31px;
+	right: 25px;
+	top: 0px;
+}
+.audioPlay{
+	background: transparent url(../img/bofang.png) no-repeat center center;
+	background-size: 13px 17px;
+}
+.audioPause{
+	background: transparent url(../img/zanting.png) no-repeat center center;
+	background-size: 11px 17px;
+}
+.audioTimeLine{
+	position: absolute;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	height: 2px;
+	background-color: #bdbbed;
+}
+.audioTimeTrack{
+	position: absolute;
+	left: 0px;
+	bottom: 0px;
+	height: 2px;
+	background-color: #f99640;
+}
+.audioItem{
+	width: 100%;
+	margin-bottom: 2px;
+	height: 34px;
+	position: relative;
+	background-color: white;
+}
+.audioItemIcon{
+	position: absolute;
+	left: 5px;
+	top: 0px;
+	width: 34px;
+	height: 34px;
+	background: transparent url(../img/yinfu.png) no-repeat center center;
+	background-size: 20px 19px;
+}
+.audioItemOn .audioItemIcon{
+	background-image: url(../img/yinfu_focus.png);
+}
+.audioItemTitle{
+	position: absolute;
+	left: 50px;
+	top: 0px;
+	height: 34px;
+	line-height: 34px;
+	font-size: 16px;
+	color: #6b6b6b;
+}
+.audioItemOn .audioItemTitle{
+	color: #f99640;
+}
+.videoItem{
+	width: 100%;
+	margin-bottom: 2px;
+	height: 43px;
+	position: relative;
+	background-color: white;
+}
+.videoItemIcon{
+	position: absolute;
+	left: 7px;
+	top: 6px;
+	width: 32px;
+	height: 31px;
+}
+.videoItemTitle{
+	position: absolute;
+	left: 50px;
+	top: 0px;
+	height: 43px;
+	line-height: 43px;
+	font-size: 16px;
+	color: #6b6b6b;
+}
+.videoMain{
+	margin-top: 10px;
+	width: 100%;
+}

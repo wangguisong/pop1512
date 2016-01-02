@@ -128,7 +128,7 @@ $(function(){
 		if($(".playPause").hasClass('audioStatePause')){
 			$(".playPause").removeClass('audioStatePause');
 		}
-		$(".playPause").addClass('audioPlay');
+		$(".playPause").addClass('audioStatePlay');
 		
 		var cur = getPlayedIndex();
 		if(cur<$('.audioItem').length-1){

@@ -1,0 +1,138 @@
+body{
+	margin: 0;
+	padding: 0;
+	background-color: #ececec;
+	font-family: "微软雅黑", "microsoft yahei";
+	color:#666;
+	font:12px '微软雅黑';
+	-webkit-text-size-adjust:none; /** 禁止文字自动调整大小，默认随着设备旋转文字大小会发生变化 **/
+	-webkit-tap-highlight-color: rgb(0,0,0,0); /** 去掉IOS上点击链接和文本框的默认半透明灰色覆盖层 **/
+	-webkit-touch-callout:none; /** 禁止长按弹出IOS底部菜单，img和a标签都要加 **/
+	-webkit-user-select: none; /** 禁止复制文本 **/
+	-webkit-overflow-scrolling: touch; /** 独立区域平滑滚动和回弹 **/
+	background: #FFFFFF;
+	height: 100%;
+}
+
+header{
+	width: 100%;
+	height: 31px;
+	background: #212737;
+	color: #FFFFFF;
+	position: relative;
+}
+footer{
+	padding: 0px;
+	width: 100%;
+	height: 46px;
+	background: url(../img/dibudaohang-big.png);
+	background-size: 2px 46px;
+	position: fixed;
+	bottom: 0;
+}
+.content{
+	position: absolute;
+	top: 31px;
+	bottom: 46px;
+	left: 0px;
+	right: 0px;
+	background: #ececec;
+	overflow: auto;
+}
+.nav{
+	position: absolute;
+	width: 33%;
+	height: 44px;
+	bottom: 0px;
+}
+.nav:nth-child(1){
+	left: 0%;
+}
+.nav:nth-child(2){
+	left: 33%;
+}
+.nav:nth-child(3){
+	left: 66%;
+}
+.navVideo{
+	background: transparent url(../img/shipin.png) no-repeat center center;
+	background-size: 25px 35px;
+}
+.navAudio{
+	background: transparent url(../img/yinpin.png) no-repeat center center;
+	background-size: 25px 37px;
+}
+.navShare{
+	background: transparent url(../img/fenxiang.png) no-repeat center center;
+	background-size: 24px 35px;
+}
+.navOn{
+	background-color: #32a64b;
+}
+.left{
+	position: absolute;
+	height: 100%;
+	left: 0px;
+	top: 0px;
+}
+.prevIcon{
+	display: inline-block;
+	width: 35px;
+	height: 100%;
+	background: transparent url(../img/xiangshang.png) no-repeat center center;
+	background-size: 31px 31px;
+}
+.right{
+	position: absolute;
+	height: 100%;
+	right: 0px;
+	top: 0px;
+}
+.nextIcon{
+	display: inline-block;
+	width: 35px;
+	height: 100%;
+	background: transparent url(../img/xiangxia.png) no-repeat center center;
+	background-size: 31px 31px;
+}
+.closeTxt{
+	display: inline-block;
+	height: 31px;
+	line-height: 31px;
+	font-size: 14px;
+	vertical-align: top;
+}
+.headerTitle{
+	height: 31px;
+	line-height: 31px;
+	margin: 0 auto;
+	font-size: 16px;
+	text-align: center;
+}
+#audioHeader{
+	background: transparent url(../img/yinpinbofangtiao-focus.png) no-repeat center center;
+	background-size: 100% 100%;
+}
+.audioTitle{
+	position: absolute;
+	height: 31px;
+	line-height: 31px;
+	font-size: 16px;
+	top: 0px;
+	left: 50px;
+}
+.videoUnitTitle{
+	height: 31px;
+	line-height: 31px;
+	margin: 0 auto;
+	font-size: 16px;
+	text-align: center;
+}
+.videoMainTitle{
+	height: 31px;
+	line-height: 31px;
+	margin: 0 auto;
+	font-size: 16px;
+	text-align: center;
+}
+

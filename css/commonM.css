@@ -11,7 +11,6 @@ body{
 	 -webkit-overflow-scrolling: touch; /** 独立区域平滑滚动和回弹 **/
 	 background: #FFFFFF;
 	 height: 100%;
-	/*overflow: hidden;*/ 
 	}
 html{
 	height: 100%;

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<!--在网站HTML文件的开头，增加viewport meta标签告诉浏览器视口宽度等于设备屏幕宽度，且不进行初始缩放。-->
+		<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0 height=device-height" name="viewport"> 
+		<!--这meta的作用就是删除默认的苹果工具栏和菜单栏。content有两个值”yes”和”no”,当我们需要显示工具栏和菜单栏时，这个行meta就不用加了，默认就是显示。-->
+		<meta content="yes" name="apple-mobile-web-app-capable" />
+		<!--作用是控制状态栏显示样式-->
+		<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+		<!--手机号码不被显示为拨号链接-->
+		<meta content="telephone=no" name="format-detection" />	
+		<title>首页</title>
+		<!--公共CSS样式-->
+		<link rel="stylesheet" href="css/common.css" />
+
+		<link rel="stylesheet" href="css/index.css" />
+
+		<script src="js/jquery-2.1.1.min.js"></script>
+		<script src="js/jqmd5.js"></script>
+		<!--公用JS文件-->
+		<script src="js/myTool.js"></script>
+		<!--电子书JS文件-->
+		<script src="js/index.js"></script>
+	</head>
+	<body>
+		<header id="indexHeader">
+  			<div class="left" onclick="closeWindow()">
+  				<div class="prevIcon"></div>
+  				<div class="closeTxt">关闭</div>
+  			</div>
+  			<div class="headerTitle"></div>
+  		</header>
+  		<header id="videoHeader">
+  			<div class="left">
+  				<div class="prevIcon"></div>
+  			</div>
+  			<div class="videoUnitTitle"></div>
+  			<div class="right">
+  				<div class="nextIcon"></div>
+  			</div>
+  		</header>
+  		<header id="videoMainHeader">
+  			<div class="left">
+  				<div class="prevIcon"></div>
+  			</div>
+  			<div class="videoMainTitle"></div>
+  		</header>
+  		<header id="audioHeader">
+  			<div class="left">
+  				<div class="prevIcon"></div>
+  			</div>
+  			<div class="audioTitle"></div>
+  			<div class="audioPlayPause audioPlay"></div>
+  			<div class="audioTimeLine"></div>
+  			<div class="audioTimeTrack"></div>
+  		</header>
+  		<div class="content" >
+  			<div class="indexContent">
+  				<div class="catTitle"></div>
+  				<div class="indexLine"></div>
+  				<div class="indexList"></div>
+  			</div>
+  			<div class="videoContent"></div>
+  			<div class="videoMainContent">
+  				<video class="videoMain" controls></video>
+  			</div>
+  			<div class="audioContent"></div>
+  		</div>
+  		<footer>
+  			<div class="nav navVideo"></div>
+  			<div class="nav navAudio"></div>
+  			<div class="nav navShare"></div>
+  		</footer>
+	</body>
+</html>
