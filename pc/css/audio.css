@@ -1,0 +1,254 @@
+.pageTop{
+	position: absolute;
+	top: 44px;
+	left: 0px;
+	right: 0px;
+	height: 66px;
+}
+.pageMiddle{
+	position: absolute;
+	top: 110px;
+	left: 0px;
+	right: 0px;
+	bottom: 80px;
+}
+.pageBottom{
+	position: absolute;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	height: 82px;
+}
+
+.audioTop{
+	max-width: 1024px;
+	width: 100%;
+	height: 64px;
+	margin: 0 auto;
+	border: solid 1px #c1c1c1;
+}
+#all{
+	margin-top: 25px;
+	margin-left: 18px;
+}
+.allTxt{
+	display: inline-block;
+	margin-top: 25px;
+	margin-left: 12px;
+	font-size: 14px;
+	color: #999999;
+}
+.allPlay{
+	margin-left: 25px;
+	margin-top: 0px;
+	display: inline-block;
+	width: 67px;
+	height: 31px;
+	background: transparent url(../img/a_playall.png) no-repeat center center;
+	background-size: 100% 100%;
+	vertical-align: middle;
+}
+.container{
+	max-width: 1024px;
+	width: 100%;
+	height: 100%;
+	margin: 0 auto;
+	border: solid 1px #c1c1c1;
+	overflow:auto;
+	border-top: none;
+	border-bottom: none;
+}
+.audioBottom{
+	max-width: 1026px;
+	width: 1026px;
+	height: 80px;
+	margin: 0 auto;
+	position: relative;
+	background: transparent url(../img/a_bottom.png) no-repeat center center;
+	background-size: 100% 100%;
+}
+.prev{
+	position: absolute;
+	left: 30px;
+	top: 12px;
+	width: 55px;
+	height: 55px;
+	background: transparent url(../img/a_prev.png) no-repeat center center;
+	background-size: 22px 22px;
+}
+.playPause{
+	position: absolute;
+	left: 85px;
+	top: 12px;
+	width: 55px;
+	height: 55px;
+}
+.audioStatePlay{
+	background: transparent url(../img/a_play.png) no-repeat center center;
+	background-size: 30px 35px;
+}
+.audioStatePause{
+	background: transparent url(../img/a_pause.png) no-repeat center center;
+	background-size: 30px 45px;
+}
+.next{
+	position: absolute;
+	left: 140px;
+	top: 12px;
+	width: 55px;
+	height: 55px;
+	background: transparent url(../img/a_next.png) no-repeat center center;
+	background-size: 22px 22px;
+}
+.playedTitle{
+	position: absolute;
+	left: 205px;
+	top: 15px;
+	font-size: 16px;
+	color: white;
+}
+.timeLine{
+	position: absolute;
+	top: 40px;
+	left: 205px;
+	width: 503px;
+	height: 8px;
+	border: solid 1px #0e0e0e;
+	border-radius: 4px;
+	background-color: #4c4c4c;
+}
+
+.timeTrack{
+	position: absolute;
+	top: 41px;
+	left: 205px;
+	width: 0px;
+	height: 8px;
+	border-radius: 4px;
+	background-color: #35afab;
+}
+.timeThumb{
+	position: absolute;
+	top: 36px;
+	width: 18px;
+	height: 18px;
+	left: 196px;
+	background-color: #e0e0e0;
+	border-radius: 50%;
+}
+.timeDes{
+	position: absolute;
+	left: 715px;
+	top: 38px;
+	font-size: 14px;
+	color: white;
+}
+
+.timeDesPlayed{
+}
+
+.timeDesTotal{
+}
+#btnVolumn{
+	cursor: pointer;
+	position: absolute;
+	left: 805px;
+	top: 17px;
+	width: 55px;
+	height: 55px;
+	background: transparent url(../img/a_volume.png) no-repeat center center;
+	background-size: 28px 26px;
+}
+
+.volumnOn{
+	opacity: 1;
+}
+
+.volumnOff{
+	opacity: 0.5;
+}
+
+.volumnLine{
+	position: absolute;
+	left: 860px;
+	top: 41px;
+	height: 6px;
+	width: 120px;
+	border: solid 1px #0e0e0e;
+	border-radius: 3px;
+	background-color: #4c4c4c;
+}
+.volumnTrack{
+	position: absolute;
+	left: 860px;
+	top: 41px;
+	height: 6px;
+	width: 0px;
+	border-radius: 3px;
+	background-color: #35afab;
+}
+.volumnThumb{
+	cursor: pointer;
+	position: absolute;
+	width: 12px;
+	height: 12px;
+	left: 854px;
+	top: 38px;
+	border-radius: 50%;
+	background-color: #e0e0e0;
+}
+.audioItem{
+	width: 100%;
+	height: 40px;
+	position: relative;
+}
+.audioItemA{
+	background-color: white;
+}
+.audioItemB{
+	background-color: #f3faff;
+}
+.audioItemCheck{
+	position: absolute;
+	left: 18px;
+	bottom: 8px;
+}
+.audioNum{
+	position: absolute;
+	left: 42px;
+	bottom: 8px;
+	font-size: 14px;
+	color: #333333;
+}
+.audioDes{
+	position: absolute;
+	left: 82px;
+	bottom: 8px;
+	font-size: 14px;
+	color: #333333;
+}
+.audioTitle{
+	display: inline-block;
+}
+.audioPlay{
+	position: absolute;
+	right: 87px;
+	bottom: 0px;
+	width: 40px;
+	height: 40px;
+	background: transparent url(../img/a_itemplay.png) no-repeat center center;
+	background-size: 7px 11px;
+}
+.audioMore{
+	position: absolute;
+	right: 40px;
+	bottom: 0px;
+	width: 40px;
+	height: 40px;
+	background: transparent url(../img/a_itemmore.png) no-repeat center center;
+	background-size: 11px 11px;
+}
+.audioItemOn{
+	height: 60px;
+	background-color: #f5f4f4;
+}
