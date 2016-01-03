@@ -3,6 +3,7 @@ var audio = new Audio();
 audio.autoplay = true;
 
 $(function(){
+	document.getElementsByClassName('container')[0].appendChild(audio);
 	$.ajax("asset/audio.data").success(function(data){
 		audioArr = eval("("+data+")");
 		var odd = false;
@@ -58,7 +59,12 @@ $(function(){
 		}
 		var data = audioArr[idx];
 		$('.playedTitle').text(data.title);
-		audio.src = data.url;
+		//audio.src = data.url;
+		var mp3 = document.createElement('source'); 
+   		mp3.src = data.url; 
+    		mp3.type= 'audio/mpeg'; 
+    		audio.appendChild(mp3); 
+    
 		audio.load();
 		setVolume();
 		var domItem = listItems[idx];
@@ -234,7 +240,11 @@ $(function(){
 		var ww = v*w;
 		$('.timeTrack').css('width', ww+"px");
 		var t = parseFloat(v*audio.duration);
-		audio.currentTime = t;
+		try{
+			audio.currentTime = t;
+		}catch(e){
+			console.log(e.message)
+		}
 	}
 	
 	function mouseuptime(evt){

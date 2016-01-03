@@ -1,4 +1,4 @@
-var server = 'http://182.92.0.115/pop/';
+var server = 'asset/';
 var unitArr;
 $(function(){
 	$.ajax(server+"video_list.data").success(function(data){
@@ -31,7 +31,7 @@ $(function(){
 		$('.unitTitle').html(parseTitle(data.title));
 		$('.list').empty();
 		data.videos.forEach(function(item){
-			var videoItem = $("<a href='http://www.baidu.com' target='_blank'><div class='videoItem'><img class='videoIcon' src='"+
+			var videoItem = $("<a href='video.html' target='_blank'><div class='videoItem'><img class='videoIcon' src='"+
 				item.cover+"'/><div class='videoTitle'>"+
 				item.title+"</div><div class='arrow'></div><img class='videoTip' src='"+
 				getIconByType(item.type)+"'/></div></a>");

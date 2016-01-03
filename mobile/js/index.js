@@ -281,6 +281,12 @@ $(document).ready(function(){
 		$('.audioContent').hide();
 		$('.videoMainTitle').text(videoMainData.title)
 		$('.videoMain').prop('src', videoMainData.url);
+//		$('.videoMain').empty();
+//		var mp4 = document.createElement('source'); 
+// 		mp4.src = videoMainData.url; 
+//  		mp4.type= 'video/mp4;';
+//  		mp4.codecs='avc1.42E01E, mp4a.40.2';
+//  		$('.videoMain').append(mp4); 
 	}
 	
 	$('#videoMainHeader .left').click(function(){

@@ -1,0 +1,212 @@
+[
+	{
+		title: "UNIT 01",
+		videos:[
+			{
+				title: "Rainbow Song",
+				cover: "asset/video.png",
+				type: 1
+			},
+			{
+				title: "Rainbow Song",
+				cover: "asset/video.png",
+				type: 2
+			},
+			{
+				title: "Rainbow Song",
+				cover: "asset/video.png",
+				type: 3
+			},
+			{
+				title: "Rainbow Song",
+				cover: "asset/video.png",
+				type: 4
+			},
+			{
+				title: "Rainbow Song",
+				cover: "asset/video.png",
+				type: 5
+			},
+			{
+				title: "Rainbow Song",
+				cover: "asset/video.png",
+				type: 1
+			}
+		]
+	},
+	{
+		title: "UNIT 02",
+		videos:[
+			{
+				title: "Rainbow Song",
+				cover: "asset/video.png",
+				type: 1
+			},
+			{
+				title: "Rainbow Song",
+				cover: "asset/video.png",
+				type: 2
+			},
+			{
+				title: "Rainbow Song",
+				cover: "asset/video.png",
+				type: 3
+			},
+			{
+				title: "Rainbow Song",
+				cover: "asset/video.png",
+				type: 4
+			},
+			{
+				title: "Rainbow Song",
+				cover: "asset/video.png",
+				type: 5
+			},
+			{
+				title: "Rainbow Song",
+				cover: "asset/video.png",
+				type: 1
+			}
+		]
+	},
+	{
+		title: "UNIT 03",
+		videos:[
+			{
+				title: "Rainbow Song",
+				cover: "asset/video.png",
+				type: 1
+			},
+			{
+				title: "Rainbow Song",
+				cover: "asset/video.png",
+				type: 2
+			},
+			{
+				title: "Rainbow Song",
+				cover: "asset/video.png",
+				type: 3
+			},
+			{
+				title: "Rainbow Song",
+				cover: "asset/video.png",
+				type: 4
+			},
+			{
+				title: "Rainbow Song",
+				cover: "asset/video.png",
+				type: 5
+			},
+			{
+				title: "Rainbow Song",
+				cover: "asset/video.png",
+				type: 1
+			}
+		]
+	},
+	{
+		title: "UNIT 04",
+		videos:[
+			{
+				title: "Rainbow Song",
+				cover: "asset/video.png",
+				type: 1
+			},
+			{
+				title: "Rainbow Song",
+				cover: "asset/video.png",
+				type: 2
+			},
+			{
+				title: "Rainbow Song",
+				cover: "asset/video.png",
+				type: 3
+			},
+			{
+				title: "Rainbow Song",
+				cover: "asset/video.png",
+				type: 4
+			},
+			{
+				title: "Rainbow Song",
+				cover: "asset/video.png",
+				type: 5
+			},
+			{
+				title: "Rainbow Song",
+				cover: "asset/video.png",
+				type: 1
+			}
+		]
+	},
+	{
+		title: "UNIT 05",
+		videos:[
+			{
+				title: "Rainbow Song",
+				cover: "asset/video.png",
+				type: 1
+			},
+			{
+				title: "Rainbow Song",
+				cover: "asset/video.png",
+				type: 2
+			},
+			{
+				title: "Rainbow Song",
+				cover: "asset/video.png",
+				type: 3
+			},
+			{
+				title: "Rainbow Song",
+				cover: "asset/video.png",
+				type: 4
+			},
+			{
+				title: "Rainbow Song",
+				cover: "asset/video.png",
+				type: 5
+			},
+			{
+				title: "Rainbow Song",
+				cover: "asset/video.png",
+				type: 1
+			}
+		]
+	},
+	{
+		title: "UNIT 06",
+		videos:[
+			{
+				title: "Rainbow Song",
+				cover: "asset/video.png",
+				type: 1
+			},
+			{
+				title: "Rainbow Song",
+				cover: "asset/video.png",
+				type: 2
+			},
+			{
+				title: "Rainbow Song",
+				cover: "asset/video.png",
+				type: 3
+			},
+			{
+				title: "Rainbow Song",
+				cover: "asset/video.png",
+				type: 4
+			},
+			{
+				title: "Rainbow Song",
+				cover: "asset/video.png",
+				type: 5
+			},
+			{
+				title: "Rainbow Song",
+				cover: "asset/video.png",
+				type: 1
+			}
+		]
+	}
+]

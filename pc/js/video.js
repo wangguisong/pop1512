@@ -41,6 +41,11 @@ $(function(){
 		}
 		var data = videoArr[idx];
 		$('.video').prop('src', data.url);
+		$('.video').empty();
+		var mp4 = document.createElement('source'); 
+   		mp4.src = data.url; 
+    		mp4.type= 'video/mp4; codecs="avc1.42E01E, mp4a.40.2"';
+    		$('.video').append(mp4); 
 		setVolume();
 	}
 	
