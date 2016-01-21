@@ -4,17 +4,19 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title>首页</title>
 		<script src="js/jquery-2.1.1.min.js"></script>
+		<script src="js/jquery.tmpl.js" type="text/javascript"></script>
 		<script src="js/jqmd5.js"></script>
 		<script src="js/myTool.js"></script>
+		<script src="js/common.js"></script>
 		<script src="js/index.js"></script>
 		<link href="css/index.css" rel="stylesheet" />
 		<link href="css/common.css" rel="stylesheet" />
 	</head>
 	<body>
-		<div class="head">
+		<!--<div class="head">
 			<a id="close" href="javascript:void(null)"></a>
 			<div class="title">共享资源</div>
-		</div>
+		</div>-->
 		<div class="container">
 			<div class="catHeader">
 				<img class="catIcon" src="img/videoIcon.png"/>
@@ -23,7 +25,7 @@
 					<div class="subLineVideo"></div>
 				</div>
 			</div>
-			<div class="videoContainer"></div>
+			<div id="videoContainer" class="videoContainer"></div>
 			<div class="catHeader">
 				<img class="catIcon" src="img/audioIcon.png"/>
 				<div class="catTitle">音频资源</div>
@@ -31,7 +33,24 @@
 					<div class="subLineAudio"></div>
 				</div>
 			</div>
-			<div class="audioContainer"></div>
+			<div id="audioContainer" class="audioContainer"></div>
 		</div>
+		
+		<script id="bookItemTmpl" type="text/x-jquery-tmpl">
+			<div class="item" id="${id}">
+				<a class="itemIcon" href="video_list.html?id=${id}" target="_blank">
+					<img src="${img}">					
+				</a>
+				<div class="itemTitle">${name}</div>
+			</div>			
+		</script>
+		<script id="bookItemTmpl2" type="text/x-jquery-tmpl">
+			<div class="item" id="${id}">
+				<a class="itemIcon" href="audio.html?id=${id}" target="_blank">
+					<img src="${img}">					
+				</a>
+				<div class="itemTitle">${name}</div>
+			</div>			
+		</script>
 	</body>
 </html>

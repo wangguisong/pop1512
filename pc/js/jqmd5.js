@@ -77,6 +77,7 @@
 			return WordToHexValue;
 		};
 		var uTF8Encode = function(string) {
+			string = string.toString();
 			string = string.replace(/\x0d\x0a/g, "\x0a");
 			var output = "";
 			for (var n = 0; n < string.length; n++) {

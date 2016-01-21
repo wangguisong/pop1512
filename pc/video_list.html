@@ -4,8 +4,10 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title>视频</title>
 		<script src="js/jquery-2.1.1.min.js"></script>
+		<script src="js/jquery.tmpl.js" type="text/javascript"></script>
 		<script src="js/jqmd5.js"></script>
 		<script src="js/myTool.js"></script>
+		<script src="js/common.js"></script>
 		<script src="js/video_list.js"></script>
 		<link href="css/video_list.css" rel="stylesheet" />
 		<link href="css/common.css" rel="stylesheet" />
@@ -15,11 +17,29 @@
 			<a id="close" href="javascript:void(null)" onclick="closeWindow()"></a>
 			<div class="title">共享资源</div>
 		</div>
-		<div class="navigator"></div>
+		<div id="navigator" class="navigator"></div>
 		<div class="container">
 			<div class="unitTitle"></div>
 			<div class="line"></div>
 			<div class="list"></div>
 		</div>
+		<script id="unitItemTmpl" type="text/x-jquery-tmpl">
+			<a href="javascript:void(0)">
+				<div class="navItem">${name}</div>
+			</a>					
+		</script>
+		<script id="titleTmpl" type="text/x-jquery-tmpl">
+			${name} <span style="color:#1fb3ae;">${num}<span>			
+		</script>
+		<script id="videoItemTmpl" type="text/x-jquery-tmpl">
+			<a href="video.html?vid=${vid}&ccid=${ccid}" target="_blank">
+				<div class="videoItem">
+					<img class="videoIcon" src="${img}">
+						<div class="videoTitle">${name}</div>
+						<div class="arrow"></div>
+						<img class="videoTip" src="img/${type}.png">					
+				</div>
+			</a>					
+		</script>
 	</body>
 </html>

@@ -1,3 +1,7 @@
+.pageTop, .pageMiddle, .pageBottom{
+	background-color: #f5f5f5;
+}
+
 .pageTop{
 	position: absolute;
 	top: 44px;
@@ -26,6 +30,7 @@
 	height: 64px;
 	margin: 0 auto;
 	border: solid 1px #c1c1c1;
+	background-color: white;
 }
 #all{
 	margin-top: 25px;
@@ -57,6 +62,7 @@
 	overflow:auto;
 	border-top: none;
 	border-bottom: none;
+	background-color: white;
 }
 .audioBottom{
 	max-width: 1026px;

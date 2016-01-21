@@ -1,23 +1,53 @@
-var server = 'asset/';
 
 $(function(){
-	$.ajax(server+"index.data").success(function(data){
-		var obj = eval("("+data+")");
-		var vArr = obj.videos;
-		vArr.forEach(function(vItem){
-			var v = $("<div class='item'><a class='itemIcon' href='video_list.html' target='_blank'><img src='"+
-				vItem.icon+"'></img></a><div class='itemTitle'>"+vItem.title+"</div></div>");
-			$('.videoContainer').append(v);
-		});
-		var aArr = obj.audios;
-		aArr.forEach(function(aItem){
-			var v = $("<div class='item'><a href='audio.html' target='_blank'><img class='itemIcon' src='"+
-				aItem.icon+"'></img></a><div class='itemTitle'>"+aItem.title+"</div></div>");
-			$('.audioContainer').append(v);
-		});
-	});
+	//userID = getQuery("userID");
+	//webAppId = getQuery("webAppId");
+	//timeOffset = getQuery("timeOffset");
+	//appPwd= getQuery("appPwd");
+	userID = '000000004b0b102f014b1084ef2c0002';
+	webAppId = 207;
+	timeOffset = '1453384476274';
+	appPwd = '4191AA0AA074F5B3DE3E83F4C29096E1';
+	setCookie("userID",userID);
+	setCookie("webAppId",webAppId);
+	setCookie("timeOffset",timeOffset);
+	setCookie("appPwd",appPwd);
 	
-	$("#close").click(function(){
-		closeWindow();
-	})
+	getAllBooks();
+	
+
+	
 });
+
+//  ========== 
+//  =展示视频栏目= 
+//  ========== 
+function getAllBooks(){
+ 	//请求数据
+   request("ResourceService","getResourceBooks",{},
+       function(data){
+       	var dataArr = data.data;
+		if(dataArr != null && dataArr.length >0){
+			//$(".videoContainer").empty();
+			var vieoArr=[],audioArr=[];
+			for (var i = 0; i < dataArr.length; i++) {
+				dataArr[i].img=server+dataArr[i].img;
+				if(dataArr[i].type==0)
+				{
+					vieoArr.push(dataArr[i]);
+				}
+				else
+				{
+					audioArr.push(dataArr[i]);
+				}
+			}
+			setListData("#bookItemTmpl","#videoContainer",vieoArr);	
+			setListData("#bookItemTmpl2","#audioContainer",audioArr);
+			
+		}
+       },
+       function(msg){
+		  alert(msg);
+	   }
+    );
+}

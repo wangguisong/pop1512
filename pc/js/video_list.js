@@ -1,69 +1,90 @@
-var server = 'asset/';
-var unitArr;
+var bookid;
+var currentUnit;
+
 $(function(){
-	$.ajax(server+"video_list.data").success(function(data){
-		unitArr = eval("("+data+")");
-		unitArr.forEach(function(uItem){
-			var item = $("<a href='javascript:void(0)'><div class='navItem'>"+uItem.title+"</div></a>");
-			$('.navigator').append(item);
-			item.click(function(evt){
-				setContent(unitArr.indexOf(uItem));
-			});
-		});
-		if(unitArr.length>0){
-			setContent(0);
-		}
-	});
+	bookid=getQuery("id");
+	userID = getCookie("userID");
+	webAppId = getCookie("webAppId");
+	timeOffset = getCookie("timeOffset");
+	appPwd= getCookie("appPwd");
 	
-	function setContent(index){
-		var navs = $('.navItem');
-		for(var i=0; i<navs.length; i++){
-			var domNav = navs[i];
-			if(index!=i){
-				if($(domNav).hasClass('navOn')){
-					$(domNav).removeClass('navOn');
-				}
-			}else{
-				$(domNav).addClass('navOn');
-			}
-		}
-		var data = unitArr[index];
-		$('.unitTitle').html(parseTitle(data.title));
-		$('.list').empty();
-		data.videos.forEach(function(item){
-			var videoItem = $("<a href='video.html' target='_blank'><div class='videoItem'><img class='videoIcon' src='"+
-				item.cover+"'/><div class='videoTitle'>"+
-				item.title+"</div><div class='arrow'></div><img class='videoTip' src='"+
-				getIconByType(item.type)+"'/></div></a>");
-			$('.list').append(videoItem);
-		})
-	}
+	setCookie("currentBookId",bookid);
 	
-	function getIconByType(type){
-		return "img/type"+type+".png";
-	}
+	getUnits ();
 	
-	function parseTitle(txt){
-		var arr = txt.split(" ");
-		var num = arr[arr.length-1];
-		var isNum = true;
-		for(var i=0; i<num.length; i++){
-			var n = num.charAt(i);
-			if(n<'0' || n>'9'){
-				isNum = false;
-				break;
-			}
-		}
-		var ret="";
-		for(var i=0; i<arr.length-1; i++){
-			ret += arr[i];
-			ret += " ";
-		}
-		if(isNum){
-			ret += ('<span style="color:#1fb3ae;">'+num+'<span>');
-		}else{
-			ret += num;
-		}
-		return ret;
-	}
 })
+
+function getUnits () {
+	//请求数据
+   request("ResourceService","getUnits",{bookid:bookid},
+       function(data){
+       	var dataArr = data.data;
+		if(dataArr != null && dataArr.length >0){
+			//$(".navigator").empty();			
+			setListData("#unitItemTmpl","#navigator",dataArr);	
+			$(".navItem").click(onClickUnit);
+			var firstUnit=$('#navigator').find(".navItem").first();
+			firstUnit.trigger("click");
+		}
+       },
+       function(msg){
+		  alert(msg);
+	   }
+    );
+}
+function onClickUnit () {
+	if(currentUnit!=null)
+	{
+		$(currentUnit).removeClass("navOn");
+	}
+	currentUnit=this;
+	$(this).addClass("navOn");
+	var unitName=$(this).text();
+	var obj={
+		name:unitName.substr(0,4),
+		num:unitName.substr(4)
+	};
+	var arr=[obj];
+	setListData("#titleTmpl",".unitTitle",arr);	
+	getVideos(unitName);
+	setCookie("currentUnitName",unitName);
+	
+}
+function getVideos (unitName) {
+	//请求数据
+   request("ResourceService","getVideos",{bookid:bookid,unitName:unitName},
+       function(data){
+       	var dataArr = data.data;
+		if(dataArr != null && dataArr.length >0){
+			//$(".list").empty();		
+			for (var i = 0; i < dataArr.length; i++) {
+				if(dataArr[i].type=="歌谣")
+				{
+					dataArr[i].type="geyao";
+				}
+				else if(dataArr[i].type=="单词")
+				{
+					dataArr[i].type="danci";
+				}
+				else if(dataArr[i].type=="语音")
+				{
+					dataArr[i].type="yuyin";
+				}
+				else if(dataArr[i].type=="对话")
+				{
+					dataArr[i].type="duihua";
+				}
+				else if(dataArr[i].type=="故事")
+				{
+					dataArr[i].type="gushi";
+				}
+			}
+			setListData("#videoItemTmpl",".list",dataArr);	
+			//$(".navItem").click(onClickUnit);
+		}
+       },
+       function(msg){
+		  alert(msg);
+	   }
+    );
+}

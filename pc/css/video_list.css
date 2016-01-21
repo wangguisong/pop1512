@@ -1,3 +1,6 @@
+a{
+	text-decoration: none;
+}
 .navigator{
 	padding: 44px 0px 0px 0px;
 	max-width: 1100px;
@@ -7,6 +10,7 @@
 }
 
 .navItem{
+	padding: 0;
 	display: inline-block;
 	width: 148px;
 	overflow: hidden;
@@ -19,7 +23,7 @@
 	border-radius: 17px;
 	background-color: #ffffff;
 	text-align: center;
-	line-height: 40px;
+	line-height: 34px;
 	margin: 0px 35px 10px 35px;
 	font-size: 18px;
 	color: #c6c6c6;
@@ -79,6 +83,9 @@
 	padding-left: 5px;
 	font-size: 14px;
 	color: #858585;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
 .arrow{
@@ -88,10 +95,11 @@
 	background: url(../img/arraw.png) no-repeat center center;
 	background-size: 9px 13px;
 	vertical-align: top;
+	float: right;
 }
 
 .videoTip{
 	position: absolute;
-	left: 0px;
+	left: -1px;
 	top: -15px;
 }

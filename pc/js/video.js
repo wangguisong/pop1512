@@ -1,6 +1,131 @@
-var videoArr;
+var bookid;
+var currentUnitName;
+var ccid;
+var vid;
 
 $(function(){
+	ccid=getQuery("ccid");
+	vid=getQuery("vid");
+	
+	bookid=getCookie("currentBookId");
+	userID = getCookie("userID");
+	webAppId = getCookie("webAppId");
+	timeOffset = getCookie("timeOffset");
+	appPwd= getCookie("appPwd");
+	currentUnitName= getCookie("currentUnitName");
+	
+	$('.unitName').text(currentUnitName);
+	getVideos ();
+	
+	$('.qrcode').mouseover(function(){
+		$('.erweiDivPanel').show();
+	});
+	$('.qrcode').mouseout(function(){
+		$('.erweiDivPanel').hide();
+	});
+	
+	changeScanCode();
+})
+
+/**二维码*/
+function changeScanCode () {
+	var container=document.getElementById("erweiDivPanelR");
+	var qrcode = new QRCode(container, {
+        width : 130,//设置宽高
+        height : 100
+    });
+    qrcode.makeCode('http://182.92.0.115/mobile/index.html?'+"id="+vid);
+}
+
+function getVideos () {
+	//请求数据
+   request("ResourceService","getVideos",{bookid:bookid,unitName:currentUnitName},
+       function(data){
+       	var dataArr = data.data;
+		if(dataArr != null && dataArr.length >0){
+			//$(".list").empty();		
+			for (var i = 0; i < dataArr.length; i++) {
+				if(dataArr[i].type=="歌谣")
+				{
+					dataArr[i].type="geyao";
+				}
+				else if(dataArr[i].type=="单词")
+				{
+					dataArr[i].type="danci";
+				}
+				else if(dataArr[i].type=="语音")
+				{
+					dataArr[i].type="yuyin";
+				}
+				else if(dataArr[i].type=="对话")
+				{
+					dataArr[i].type="duihua";
+				}
+				else if(dataArr[i].type=="故事")
+				{
+					dataArr[i].type="gushi";
+				}
+			}
+			setListData("#videoItemTmpl",".list",dataArr);	
+			$(".videoItem").click(onClickVideoItem);
+			setContent(ccid);
+		}
+       },
+       function(msg){
+		  alert(msg);
+	   }
+    );
+}
+function onClickVideoItem(){
+	ccid=$(this).attr("id");
+	vid=$(this).attr("vid");
+	setContent(ccid);
+}
+function setContent(ccid){	
+	var listItems = $('.videoItem');	
+	for(var i=0; i<listItems.length; i++){
+		var domItem = listItems[i];
+		if(ccid!=domItem.id){
+			if($(domItem).hasClass('videoItemOn')){
+				$(domItem).removeClass('videoItemOn');
+			}
+		}else{
+			$(domItem).addClass('videoItemOn');
+		}
+	}
+	playVideo();
+}
+/**播放视频播放*/
+function playVideo(){
+	if(ccid != 0){
+		$("#jiema").hide();
+		
+		$(".playDiv div").remove();
+		//var scriptl = $('<script id="scriptId" type="text/javascript" ><\/script>');
+		$(".playDiv script").remove();
+		//$(".playDiv").append('<script id="scriptId" type="text/javascript" ><\/script>');
+	
+		var dom = document.getElementById("playDiv");
+		var sc = document.createElement("script");
+		sc.setAttribute("type","text/javascript");
+		sc.setAttribute("id","scriptId");
+		dom.appendChild(sc);
+	
+		var url="http://union.bokecc.com/player?vid="+ccid+"&siteid=8B90641B41283EDC&autoStart=true&width=615&height=346&playerid=406D2DF0A2BD3485&playertype=1";
+		$("#scriptId").attr("src",url);
+		//var url="http://union.bokecc.com/player?vid="+ccid+"&siteid=8B90641B41283EDC&autoStart=true&width=740&height=416&playerid=406D2DF0A2BD3485&playertype=1";
+		//$("#scriptId").attr("src",url);
+		cc_js_Player.showPlayer();
+		//var url="http://v.xdf.cn/videov.php?do=playerCode&playerType=JS&vid="+showid+"&autoStart=1&width=740&height=416&playerid=406D2DF0A2BD3485";
+		//$("#iframe").attr("src",url);
+	}else{
+		$("#jiema").show();
+	}
+	
+}
+
+
+/*$(function(){
 	$.ajax("asset/video.data").success(function(data){
 		var obj = eval("("+data+")");
 		videoArr = obj.videos;
@@ -195,3 +320,4 @@ $(function(){
 		document.removeEventListener('mouseup', mouseup);
 	}
 })
+*/

@@ -4,6 +4,11 @@ body{
 	background-color: white;
 	font-family: "微软雅黑", "microsoft yahei";
 }
+p{
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
 
 .head{
 	z-index: 9999;

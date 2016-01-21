@@ -1,82 +1,23 @@
+var bookid;
+//var server="http://10.200.23.123:80/WebTemplet/file/";
+
 var audioArr;
+var oldTimeX;
+var oldX;
 var audio = new Audio();
 audio.autoplay = true;
 
 $(function(){
+	bookid=getQuery("id");
+	userID = getCookie("userID");
+	webAppId = getCookie("webAppId");
+	timeOffset = getCookie("timeOffset");
+	appPwd= getCookie("appPwd");
+	
+	setCookie("currentBookId",bookid);
+	
 	document.getElementsByClassName('container')[0].appendChild(audio);
-	$.ajax("asset/audio.data").success(function(data){
-		audioArr = eval("("+data+")");
-		var odd = false;
-		audioArr.forEach(function(aItem){
-			var item = $('<div class="audioItem '+(odd ? 'audioItemB' : 'audioItemA')+'">\
-					<input type="checkbox" class="audioItemCheck"/>\
-					<div class="audioNum">'+
-					formatNum(audioArr.indexOf(aItem))+'</div><div class="audioDes">\
-					<img class="audioPlaying" src="img/a_played.png" />\
-					<div class="audioTitle">'+
-					aItem.title+'</div></div>\
-					<div class="button audioPlay"></div>\
-					<div class="button audioMore"></div>\
-				</div>');
-			$('.container').append(item);
-			item.dblclick(function(evt){
-				setContent(audioArr.indexOf(aItem));
-			});
-			$(item[0].getElementsByClassName('audioPlay')).click(function(evt){
-				setContent(audioArr.indexOf(aItem));
-			});
-			$(item[0].getElementsByClassName('audioItemCheck')).change(function(evt){
-				checkAllChecked();
-			});
-			odd = !odd;
-		});
-		if(audioArr.length>0){
-			setContent(0);
-		}
-	});
-	
-	function formatNum(num){
-		var ret = "";
-		if(num<10) ret += "0";
-		ret += num;
-		return ret;
-	}
-	
-	function setContent(idx){
-		var listItems = $('.audioItem');
-		for(var i=0; i<listItems.length; i++){
-			var domItem = listItems[i];
-			var flag = domItem.getElementsByClassName('audioPlaying');
-			if(idx!=i){
-				if($(domItem).hasClass('audioItemOn')){
-					$(domItem).removeClass('audioItemOn');
-				}
-				$(flag).hide();
-			}else{
-				$(domItem).addClass('audioItemOn');
-				$(flag).show();
-			}
-		}
-		var data = audioArr[idx];
-		$('.playedTitle').text(data.title);
-		//audio.src = data.url;
-		var mp3 = document.createElement('source'); 
-   		mp3.src = data.url; 
-    		mp3.type= 'audio/mpeg'; 
-    		audio.appendChild(mp3); 
-    
-		audio.load();
-		setVolume();
-		var domItem = listItems[idx];
-		var tTop = $(domItem).offset().top-$('.container').offset().top;
-		var pos = $('.container').scrollTop();
-		if(tTop<0){
-			$('.container').scrollTop(pos+tTop);
-		}else if(tTop+$(domItem).height() > $('.container').height()){
-			var dis = tTop+$(domItem).height()-$('.container').height();
-			$('.container').scrollTop(dis+pos);
-		}	
-	}
+	getAudios();
 	
 	$('.playPause').click(function(evt){
 		if(audio.paused){
@@ -157,6 +98,144 @@ $(function(){
 		setVolume();
 	}
 	
+	$('.volumnThumb').mousedown(function(evt){
+		oldX = evt.clientX;
+		document.addEventListener('mousemove', mousemove);
+		document.addEventListener('mouseup', mouseup);
+	})
+	
+	$('.timeThumb').mousedown(function(evt){
+		oldX = evt.clientX;
+		document.addEventListener('mousemove', mousemovetime);
+		document.addEventListener('mouseup', mouseuptime);
+	})
+	
+	$('.prev').click(function(){
+		var cur = getPlayedIndex();
+		if(cur>0){
+			setContent(cur-1);
+		}
+	});
+	
+	$('.next').click(function(){
+		var cur = getPlayedIndex();
+		if(cur<$('.audioItem').length-1){
+			setContent(cur+1);
+		}
+	});
+	
+	$('#all').change(function(){
+		if($('#all')[0].checked){
+			var list = $('.audioItemCheck');
+			for(var i=0; i<list.length; i++){
+				list[i].checked = true;
+			}
+		}else{
+			var list = $('.audioItemCheck');
+			for(var i=0; i<list.length; i++){
+				list[i].checked = false;
+			}
+		}
+	});
+	
+	$('.allPlay').click(function(evt){
+		var list = $('.audioItemCheck');
+		for(var i=0; i<list.length; i++){
+			if(list[i].checked){
+				setContent(i);
+				break;
+			}
+		}
+	});
+})
+
+function getAudios() {
+	//请求数据
+   request("ResourceService","getAudios",{bookid:bookid},
+       function(data){
+       	var dataArr = data.data;
+		if(dataArr != null && dataArr.length >0){
+			//$(".list").empty();	
+			audioArr=dataArr;
+			for (var i = 0; i < dataArr.length; i++) {
+				dataArr[i].path=server+dataArr[i].path;
+				dataArr[i].num=i;
+				if(i%2==0)
+				{
+					dataArr[i].className="audioItemA";
+				}
+				else
+				{
+					dataArr[i].className="audioItemB";
+				}
+			}
+			setListData("#audioItemTmpl",".container",dataArr);	
+			$(".audioItem").dblclick(function(evt){
+				var aid=$(this).find(".audioPlay").attr("id");
+				setContent(aid);
+			});
+			$('.audioPlay').click(function(evt){
+				setContent(this.id);
+			});
+			$('audioItemCheck').change(function(evt){
+				checkAllChecked();
+			});
+			setContent(audioArr[0].id);
+		}
+       },
+       function(msg){
+		  alert(msg);
+	   }
+    );
+}
+
+	function getAudioById (aid) {
+		for (var i = 0; i < audioArr.length; i++) {
+			if(audioArr[i].id==aid){
+				return audioArr[i];
+			}
+		}
+		return null;
+	}
+	
+	function setContent(aid){
+		var listItems = $('.audioItem');
+		for(var i=0; i<listItems.length; i++){
+			var domItem = listItems[i];
+			var flag = domItem.getElementsByClassName('audioPlaying');
+			if(aid!=$(domItem).find(".audioPlay").attr("id")){
+				if($(domItem).hasClass('audioItemOn')){
+					$(domItem).removeClass('audioItemOn');
+				}
+				$(flag).hide();
+			}else{
+				$(domItem).addClass('audioItemOn');
+				$(flag).show();
+			}
+		}
+		var data = getAudioById(aid);
+		$('.playedTitle').text(data.name);
+		audio.src = data.path;
+		var mp3 = document.createElement('source'); 
+   		mp3.src = data.path; 
+    		mp3.type= 'audio/mpeg'; 
+    		audio.appendChild(mp3); 
+    
+		audio.load();
+		setVolume();
+		var domItem = $("#"+aid).parent();
+		var tTop = $(domItem).offset().top-$('.container').offset().top;
+		var pos = $('.container').scrollTop();
+		if(tTop<0){
+			$('.container').scrollTop(pos+tTop);
+		}else if(tTop+$(domItem).height() > $('.container').height()){
+			var dis = tTop+$(domItem).height()-$('.container').height();
+			$('.container').scrollTop(dis+pos);
+		}	
+	}
+	
+	
+	
 	function formatTime(time){
 		time = parseInt(time);
 		var sec = parseInt(time%60);
@@ -184,12 +263,8 @@ $(function(){
 		$('.volumnThumb').css('left', ll+"px");
 	}
 	
-	var oldX;
-	$('.volumnThumb').mousedown(function(evt){
-		oldX = evt.clientX;
-		document.addEventListener('mousemove', mousemove);
-		document.addEventListener('mouseup', mouseup);
-	})
+	
+	
 	
 	function mousemove(evt){
 		var x = evt.clientX;
@@ -214,12 +289,8 @@ $(function(){
 		document.removeEventListener('mouseup', mouseup);
 	}
 	
-	var oldTimeX;
-	$('.timeThumb').mousedown(function(evt){
-		oldX = evt.clientX;
-		document.addEventListener('mousemove', mousemovetime);
-		document.addEventListener('mouseup', mouseuptime);
-	})
+	
+	
 	
 	function mousemovetime(evt){
 		var x = evt.clientX;
@@ -262,33 +333,7 @@ $(function(){
 		return -1;
 	}
 	
-	$('.prev').click(function(){
-		var cur = getPlayedIndex();
-		if(cur>0){
-			setContent(cur-1);
-		}
-	});
 	
-	$('.next').click(function(){
-		var cur = getPlayedIndex();
-		if(cur<$('.audioItem').length-1){
-			setContent(cur+1);
-		}
-	});
-	
-	$('#all').change(function(){
-		if($('#all')[0].checked){
-			var list = $('.audioItemCheck');
-			for(var i=0; i<list.length; i++){
-				list[i].checked = true;
-			}
-		}else{
-			var list = $('.audioItemCheck');
-			for(var i=0; i<list.length; i++){
-				list[i].checked = false;
-			}
-		}
-	});
 	
 	function checkAllChecked(){
 		var isAllChecked = true;
@@ -305,13 +350,4 @@ $(function(){
 		}
 	}
 	
-	$('.allPlay').click(function(evt){
-		var list = $('.audioItemCheck');
-		for(var i=0; i<list.length; i++){
-			if(list[i].checked){
-				setContent(i);
-				break;
-			}
-		}
-	});
-})
+	
