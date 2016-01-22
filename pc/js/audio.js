@@ -78,8 +78,10 @@ $(function(){
 		$(".playPause").addClass('audioStatePlay');
 		
 		var cur = getPlayedIndex();
-		if(cur<$('.audioItem').length-1){
-			setContent(cur+1);
+		var next = findNextSelected(cur);
+		if(next >= 0){
+			var aid = $($('.audioPlay')[next]).attr('id');
+			setContent(aid);
 		}
 	}
 	
@@ -113,14 +115,17 @@ $(function(){
 	$('.prev').click(function(){
 		var cur = getPlayedIndex();
 		if(cur>0){
-			setContent(cur-1);
+			var aid = $($('.audioPlay')[cur-1]).attr('id');
+			setContent(aid);
 		}
 	});
 	
 	$('.next').click(function(){
 		var cur = getPlayedIndex();
-		if(cur<$('.audioItem').length-1){
-			setContent(cur+1);
+		var next = findNextSelected(cur);
+		if(next >= 0){
+			var aid = $($('.audioPlay')[next]).attr('id');
+			setContent(aid);
 		}
 	});
 	
@@ -142,7 +147,8 @@ $(function(){
 		var list = $('.audioItemCheck');
 		for(var i=0; i<list.length; i++){
 			if(list[i].checked){
-				setContent(i);
+				var aid = $($('.audioPlay')[i]).attr('id');
+				setContent(aid);
 				break;
 			}
 		}
@@ -180,6 +186,10 @@ function getAudios() {
 			$('audioItemCheck').change(function(evt){
 				checkAllChecked();
 			});
+			var list = $('.audioItemCheck');
+			for(var i=0; i<list.length; i++){
+				list[i].checked = true;
+			}
 			setContent(audioArr[0].id);
 		}
        },
@@ -350,4 +360,17 @@ function getAudios() {
 		}
 	}
 	
+	function findNextSelected(from){
+		var ret = -1;
+		if(from<$('.audioItem').length-1){
+			for(var i=from+1; i<$('.audioItem').length; i++){
+				var checked = $('.audioItemCheck')[i].checked;
+				if(checked){
+					ret = i;
+					break;
+				}
+			}
+		}
+		return ret;
+	}
 	

@@ -8,10 +8,11 @@
 	left: 0px;
 	right: 0px;
 	height: 66px;
+	display: none;
 }
 .pageMiddle{
 	position: absolute;
-	top: 110px;
+	top: 44px;
 	left: 0px;
 	right: 0px;
 	bottom: 80px;
@@ -227,11 +228,15 @@
 	color: #333333;
 }
 .audioDes{
+	cursor: pointer;
 	position: absolute;
 	left: 82px;
 	bottom: 8px;
 	font-size: 14px;
 	color: #333333;
+}
+.audioDes:hover{
+	color: blue;
 }
 .audioTitle{
 	display: inline-block;
@@ -244,6 +249,9 @@
 	height: 40px;
 	background: transparent url(../img/a_itemplay.png) no-repeat center center;
 	background-size: 7px 11px;
+}
+.audioPlay:hover{
+	background-image: url(../img/a_itemplay2.png);
 }
 .audioMore{
 	position: absolute;
