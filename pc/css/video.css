@@ -221,6 +221,13 @@
 	background-size: 12px 7px;
 }
 
+.videoListTop{
+    width: 100%;
+    height: 38px;
+    background-color: #F0F0F0;
+    box-shadow: 0px 0px 2px white inset;
+    -webkit-box-shadow: 0px 0px 2px white inset;
+}
 .unitLineV{
 	display: inline-block;
 	margin-left: 10px;
@@ -248,6 +255,14 @@
 	width: 330px;
 	height: 1px;
 	background-color: #d6d6d6;
+}
+.unitLineH2{
+    display: block;
+    margin-left: 10px;
+    margin-top: 2px;
+    width: 330px;
+    height: 1px;
+    background-color: #FFFFFF;
 }
 .list{
 	margin-top: 4px;
