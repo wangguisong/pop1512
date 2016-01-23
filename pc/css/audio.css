@@ -266,3 +266,39 @@
 	height: 60px;
 	background-color: #f5f4f4;
 }
+
+/*二维码弹出框*/
+.erweiDivPanel{
+    width: 436px;
+    height: 132px;
+    position: absolute;
+    background: #FFFFFF;
+    z-index: 4;
+}
+.erweiDivPanel  .erweiDivPanelL{
+    width:238px;
+    height: 100px;
+    border: 1px solid  #e6e4e4;
+    border-right: none;
+    float: left;
+    font-size: 14px;
+    line-height: 25px;
+    text-indent:26px;
+    padding-top: 30px;
+}
+
+.erweiDivPanel  .erweiDivPanelR{
+    width: 196px;
+    height: 131px;
+    border: 1px solid  #e6e4e4;
+    border-left:none;
+    border-top: none;
+    float: left;
+    position: relative;
+    background: url(../img/shuxian.png) no-repeat 60px center;
+}
+.erweiDivPanel  .erweiDivPanelR img{
+    position: absolute;
+    right:10px;
+    top:20px;
+}

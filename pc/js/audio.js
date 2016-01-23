@@ -186,6 +186,22 @@ function getAudios() {
 			$('audioItemCheck').change(function(evt){
 				checkAllChecked();
 			});
+			$('.audioMore').mouseover(function(evt){
+				var mx = evt.pageX;
+				var my = evt.pageY;
+				changeScanCode();
+				var x = mx-436;
+				var y = my-66;
+				if(y<44){
+					y = 44;
+				}
+				$('.erweiDivPanel').css('right','100px');
+				$('.erweiDivPanel').css('top', y+'px');
+				$('.erweiDivPanel').show();
+			});
+			$('.audioMore').mouseout(function(){
+				$('.erweiDivPanel').hide();
+			});
 			var list = $('.audioItemCheck');
 			for(var i=0; i<list.length; i++){
 				list[i].checked = true;
@@ -372,5 +388,15 @@ function getAudios() {
 			}
 		}
 		return ret;
+	}
+	
+	/**二维码*/
+	function changeScanCode (aid) {
+		var container=document.getElementById("erweiDivPanelR");
+		var qrcode = new QRCode(container, {
+	        width : 130,//设置宽高
+	        height : 100
+	    });
+	    qrcode.makeCode('http://182.92.0.115/mobile/index.html?'+"id="+aid);
 	}
 	
