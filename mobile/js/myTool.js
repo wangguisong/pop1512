@@ -260,7 +260,9 @@ var userID;
 var webAppId;
 var appPwd;
 var timeOffset;
-var URL = "http://10.200.23.131/WebTemplet/actionService/gateway";
+//var URL = "http://10.200.23.131/WebTemplet/actionService/gateway";
+var URL = "http://popnew.cn/actionService/gateway";
+var server="http://kidsfile.popnew.cn/";
 
 //验证相关参数的方法
 function createRequestVars(){

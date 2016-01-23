@@ -190,12 +190,12 @@ function getAudios() {
 				var mx = evt.pageX;
 				var my = evt.pageY;
 				changeScanCode();
-				var x = mx-436;
+				var x = mx-476;
 				var y = my-66;
 				if(y<44){
 					y = 44;
 				}
-				$('.erweiDivPanel').css('right','100px');
+				$('.erweiDivPanel').css('left',x+'px');
 				$('.erweiDivPanel').css('top', y+'px');
 				$('.erweiDivPanel').show();
 			});
@@ -397,6 +397,10 @@ function getAudios() {
 	        width : 130,//设置宽高
 	        height : 100
 	    });
-	    qrcode.makeCode('http://182.92.0.115/mobile/index.html?'+"id="+aid);
+		var mobileHost = window.location.href.split('?')[0];
+		mobileHost = mobileHost.replace('pc/audio.html', 'mobile/index.html');
+		var mobileUrl = mobileHost+"?userID="+userID+"&webAppId="+webAppId+"&timeOffset="+timeOffset+"&action=1&actionId="+bookid;
+	    console.log(mobileUrl);
+		qrcode.makeCode(mobileUrl);
 	}
 	

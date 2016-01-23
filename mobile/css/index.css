@@ -122,3 +122,15 @@
 	margin-top: 10px;
 	width: 100%;
 }
+.playDiv{
+    width: 100%;
+    height: auto;
+    position:relative;
+    margin-top: 10px;
+}
+.playDiv img{
+    position:absolute;
+    width:100%;
+    height:100%;
+    z-index:3;
+}

@@ -12,13 +12,37 @@ audio.autoplay = true;
 
 var videoArr;
 var videoMainData;
+var curBookId;
+var curVideoUnits;
+var curVideoUnitIndex;
 
 $(document).ready(function(){
-	userID = getQuery("userID");
-	webAppId = getQuery("webAppId");
-	timeOffset = getQuery("timeOffset");
+	//userID = getQuery("userID");
+	//webAppId = getQuery("webAppId");
+	//timeOffset = getQuery("timeOffset");
+	var action = getQuery('action');
+	var actionId = getQuery('actionId');
+	var actionName = getQuery('actionName');
+	if(actionName){
+		actionName = decodeURIComponent(actionName);
+	}
 	
-	initVideoBookList();
+	userID = '000000004b0b102f014b1084ef2c0002';
+	webAppId = 207;
+	timeOffset = '1453384476274';
+	appPwd = '4191AA0AA074F5B3DE3E83F4C29096E1';
+	setCookie("userID",userID);
+	setCookie("webAppId",webAppId);
+	setCookie("timeOffset",timeOffset);
+	setCookie("appPwd",appPwd);
+	
+	if(action==0){
+		initByActionVideo();
+	}else if(action==1){
+		initByActionAudio();
+	}else{
+		initVideoBookList();
+	}
 	
 	$('.navVideo').click(function(){
 		if(!$('.navVideo').hasClass('navOn')){
@@ -47,11 +71,18 @@ $(document).ready(function(){
 		$('.videoContent').hide();
 		$('.videoMainContent').hide();
 		$('.audioContent').hide();
-		
-		$.ajax("asset/video-book.data").success(function(data){
-			bookList = eval("("+data+")");
-			setBookList();
-		});
+		$('.indexList').empty();
+		request("ResourceService","getResourceBooks",{},
+			       function(data){
+			 		bookList = data.data;
+					if(bookList != null && bookList.length >0){
+						setBookList(0);
+					}
+			       },
+			       function(msg){
+					  alert(msg);
+				   }
+			    );
 	}
 	
 	function initAudioBookList(){
@@ -69,26 +100,36 @@ $(document).ready(function(){
 		$('.videoContent').hide();
 		$('.videoMainContent').hide();
 		$('.audioContent').hide();
-		
-		$.ajax("asset/audio-book.data").success(function(data){
-			bookList = eval("("+data+")");
-			setBookList();
-		});
+		$('.indexList').empty();
+		request("ResourceService","getResourceBooks",{},
+			       function(data){
+			 		bookList = data.data;
+					if(bookList != null && bookList.length >0){
+						setBookList(1);
+					}
+			       },
+			       function(msg){
+					  alert(msg);
+				   }
+			    );
 	}
 	
-	function setBookList(){
+	function setBookList(type){
 		$('.catTitle').text('Pop Ready');
 		$('.indexList').empty();
 		bookList.forEach(function(book){
-			var item = $("<div class='bookItem'><img class='bookCover' src='"+
-				book.icon+"'/><div class='bookTitle'>"+
-				book.title+"</div></div>");
+			if(book.type!=type) return;
+			var item = $("<div id='"+book.id+"' class='bookItem'><img class='bookCover' src='"+
+				server+book.img+"'/><div class='bookTitle'>"+
+				book.name+"</div></div>");
 			$('.indexList').append(item);
 			item.click(function(){
 				if($('.navVideo').hasClass('navOn')){
-					initVideo(bookList.indexOf(book));
+					curBookId = $(this).attr('id');
+					initVideo();
 				}else if($('.navAudio').hasClass('navOn')){
-					initAudio(bookList.indexOf(book));
+					curBookId = $(this).attr('id');
+					initAudio();
 				}
 			});
 		});
@@ -96,15 +137,14 @@ $(document).ready(function(){
 	}
 	
 	function layoutAppIcon(){
-		var allW = $(window).width();
+		var allW = $(window).width()-24;
 		var li = $(".bookItem");
-		var liW = li.width();
+		var liW = 80;
 		var count = Math.floor((allW/liW));
-	    var left = (allW - (liW*count))/2;
-		li.css("margin-left",left);
+		li.width(allW/count);
 	}
 	
-	function initAudio(bookIndex){
+	function initAudio(){
 		$('#indexHeader').hide();
 		$('#videoHeader').hide();
 		$('#videoMainHeader').hide();
@@ -114,23 +154,29 @@ $(document).ready(function(){
 		$('.videoMainContent').hide();
 		$('.audioContent').show();
 		$('.audioContent').empty();
-		$.ajax("asset/audio.data").success(function(data){
-			audioArr = eval("("+data+")");
-			audioArr.forEach(function(dataItem){
-				var item = $("<div class='audioItem'><div class='audioItemIcon'></div>\
-					<div class='audioItemTitle'>"+
-					dataItem.title+"</div></div>");
-				$('.audioContent').append(item);
-				item.click(function(evt){
-					if(!item.hasClass('audioItemOn')){
-						playAudio(audioArr.indexOf(dataItem));
-					}
+		//请求数据
+		   request("ResourceService","getAudios",{bookid:curBookId},
+		       function(data){
+		       	 audioArr = data.data;
+		       	 audioArr.forEach(function(dataItem){
+					var item = $("<div class='audioItem'><div class='audioItemIcon'></div>\
+						<div class='audioItemTitle'>"+
+						dataItem.name+"</div></div>");
+					$('.audioContent').append(item);
+					item.click(function(evt){
+						if(!item.hasClass('audioItemOn')){
+							playAudio(audioArr.indexOf(dataItem));
+						}
+					});
 				});
-			});
-			if(audioArr.length>0){
-				playAudio(0);
-			}
-		});
+				if(audioArr.length>0){
+					playAudio(0);
+				}
+		       },
+		       function(msg){
+				  alert(msg);
+			   }
+		    );
 	}
 	
 	function playAudio(idx){
@@ -146,8 +192,8 @@ $(document).ready(function(){
 			}
 		}
 		var data = audioArr[idx];
-		$('.audioTitle').text(data.title);
-		audio.src = data.url;
+		$('.audioTitle').text(data.name);
+		audio.src = server+data.path;
 		audio.load();
 	}
 	
@@ -216,7 +262,7 @@ $(document).ready(function(){
 		initAudioBookList();
 	});
 	
-	function initVideo(bookIndex){
+	function initVideo(){
 		$('#indexHeader').hide();
 		$('#videoHeader').show();
 		$('#videoMainHeader').hide();
@@ -225,52 +271,91 @@ $(document).ready(function(){
 		$('.videoContent').show();
 		$('.videoMainContent').hide();
 		$('.audioContent').hide();
-		initUnitVideo(0);
+		//请求数据
+		   request("ResourceService","getUnits",{bookid:curBookId},
+		       function(data){
+			   	curVideoUnits = data.data;
+				if(curVideoUnits != null && curVideoUnits.length >0){
+					initUnitVideo(0);
+				}
+		       },
+		       function(msg){
+				  alert(msg);
+			   }
+		    );
+	}
+	
+	function backVideoInit(){
+		$('#indexHeader').hide();
+		$('#videoHeader').show();
+		$('#videoMainHeader').hide();
+		$('#audioHeader').hide();
+		$('.indexContent').hide();
+		$('.videoContent').show();
+		$('.videoMainContent').hide();
+		$('.audioContent').hide();
+		initUnitVideo(curVideoUnitIndex);
 	}
 	
 	function initUnitVideo(uIndex){
-		$('.videoUnitTitle').text('Unit 1');
+		curVideoUnitIndex = uIndex;
+		$('.videoUnitTitle').text(curVideoUnits[uIndex].name);
+		var unitName = curVideoUnits[uIndex].name;
 		$('.videoContent').empty();
-		$.ajax("asset/video.data").success(function(data){
-			audioArr = eval("("+data+")");
-			audioArr.forEach(function(dataItem){
-				var item = $("<div class='videoItem'><img class='videoItemIcon' src='"+
-					getVideoIcon(dataItem.type)+"' />\
-					<div class='videoItemTitle'>"+
-					dataItem.title+"</div></div>");
-				$('.videoContent').append(item);
-				item.click(function(evt){
-					videoMainData = dataItem;
-					initVideoMain();
-				});
-			});
-		});
+		 request("ResourceService","getVideos",{bookid:curBookId,unitName:unitName},
+			       function(data){
+			       	var dataArr = data.data;
+					if(dataArr != null && dataArr.length >0){
+						dataArr.forEach(function(dataItem){
+							var item = $("<div class='videoItem'><img class='videoItemIcon' src='"+
+								getVideoIcon(dataItem.type)+"' />\
+								<div class='videoItemTitle'>"+
+								dataItem.name+"</div></div>");
+							$('.videoContent').append(item);
+							item.click(function(evt){
+								videoMainData = dataItem;
+								initVideoMain();
+							});
+						});
+					}
+			       },
+			       function(msg){
+					  alert(msg);
+				   }
+			    );
 	}
 	
 	$('#videoHeader .left').click(function(){
-		initVideoBookList();
+		if(curVideoUnitIndex>0 && curVideoUnits && curVideoUnits.length>0){
+			initUnitVideo(curVideoUnitIndex-1);
+		}else{
+			initVideoBookList();
+		}
 	});
 	
 	$('#videoHeader .right').click(function(){
-		initUnitVideo(0);
+		if(curVideoUnitIndex < curVideoUnits.length-1){
+			initUnitVideo(curVideoUnitIndex+1);
+		}
 	})
 	
 	function getVideoIcon(type){
-		if(type==1){
+		if(type=='歌谣'){
 			return 'img/geyao.png';
-		}else if(type==2){
+		}else if(type=="对话"){
 			return 'img/duihua.png';
-		}else if(type==3){
+		}else if(type=='故事'){
 			return 'img/gushi.png';
-		}else if(type==4){
+		}else if(type=='单词'){
 			return 'img/danci.png';
-		}else if(type==5){
+		}else if(type=='语音'){
 			return 'img/yuyin.png';
 		}
 		return "";
 	}
 	
 	function initVideoMain(){
+		console.log(JSON.stringify(videoMainData))
 		$('#indexHeader').hide();
 		$('#videoHeader').hide();
 		$('#videoMainHeader').show();
@@ -279,8 +364,8 @@ $(document).ready(function(){
 		$('.videoContent').hide();
 		$('.videoMainContent').show();
 		$('.audioContent').hide();
-		$('.videoMainTitle').text(videoMainData.title)
-		$('.videoMain').prop('src', videoMainData.url);
+		$('.videoMainTitle').text(videoMainData.name)
+		playVideo();
 //		$('.videoMain').empty();
 //		var mp4 = document.createElement('source'); 
 // 		mp4.src = videoMainData.url; 
@@ -290,9 +375,43 @@ $(document).ready(function(){
 	}
 	
 	$('#videoMainHeader .left').click(function(){
-		$('.videoMain')[0].pause();
-		initVideo(0);
+		$('video')[0].pause();
+		backVideoInit();
 	})
+	
+	/**播放视频播放*/
+	function playVideo(){
+		ccid = videoMainData.ccid;
+		if(ccid != 0){
+			$("#jiema").hide();
+			
+			$(".playDiv div").remove();
+			$(".playDiv script").remove();
+		
+			var dom = document.getElementById("playDiv");
+			var sc = document.createElement("script");
+			sc.setAttribute("type","text/javascript");
+			sc.setAttribute("id","scriptId");
+			dom.appendChild(sc);
+		
+			var url="http://union.bokecc.com/player?vid="+ccid+"&siteid=8B90641B41283EDC&autoStart=true&width=100%&height=auto&playerid=406D2DF0A2BD3485&playertype=1";
+			$("#scriptId").attr("src",url);
+			cc_js_Player.showPlayer();
+		}else{
+			$("#jiema").show();
+		}
+		
+	}
+	
+	function initByActionVideo(){
+		videoMainData = {name:actionName,ccid:actionId};
+		initVideoMain();
+	}
+	
+	function initByActionAudio(){
+		curBookId = actionId;
+		initAudio();
+	}
 });
 
 

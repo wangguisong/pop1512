@@ -2,6 +2,7 @@ var bookid;
 var currentUnitName;
 var ccid;
 var vid;
+var videoName;
 
 $(function(){
 	ccid=getQuery("ccid");
@@ -23,8 +24,6 @@ $(function(){
 	$('.qrcode').mouseout(function(){
 		$('.erweiDivPanel').hide();
 	});
-	
-	changeScanCode();
 })
 
 /**二维码*/
@@ -34,7 +33,11 @@ function changeScanCode () {
         width : 130,//设置宽高
         height : 100
     });
-    qrcode.makeCode('http://182.92.0.115/mobile/index.html?'+"id="+vid);
+	var mobileHost = window.location.href.split('?')[0];
+	mobileHost = mobileHost.replace('pc/video.html', 'mobile/index.html');
+	var mobileUrl = mobileHost+"?userID="+userID+"&timeOffset="+timeOffset+"&action=0&actionId="+ccid;
+	console.log(mobileUrl)
+    qrcode.makeCode(mobileUrl);
 }
 
 function getVideos () {
@@ -91,9 +94,11 @@ function setContent(ccid){
 			}
 		}else{
 			$(domItem).addClass('videoItemOn');
+			videoName = $(domItem).children('.videoItemName').text();
 		}
 	}
 	playVideo();
+	changeScanCode();
 }
 /**播放视频播放*/
 function playVideo(){
