@@ -1,5 +1,5 @@
 .container{
-	padding: 44px 0px 44px 0px;
+	padding: 25px 0px 44px 0px;
 	max-width: 1024px;
 	width: 100%;
 	margin: 0 auto;
@@ -8,10 +8,11 @@
 
 .videoMain{
 	display: inline-block;
-	width: 660px;
+	width: 615px;
 	border: solid 1px #cecece;
 	background-color: white;
 	border-radius: 2px;
+	border-right: none;
 }
 
 .video{
@@ -34,11 +35,13 @@
 .videoList{
 	display: inline-block;
 	vertical-align: top;
-	margin-left: 5px;
+	margin-left: -4px;
 	width: 350px;
-	border: solid 1px #cecece;
-	background-color: #f0f0f0;
-	border-radius: 2px;
+	background-color: white;
+	height: 386px;
+	position: relative;
+	border-left: none;
+	margin-top: 1px;
 }
 
 .timeLine{
@@ -185,14 +188,14 @@
 
 .videoBottom{
 	position: relative;
-	margin-left: 20px;
+	margin-left: 0px;
 	margin-top: 0px;
 	width: 615px;
-	height: 50px;
+	height: 40px;
 }
 .qrcode{
 	position: absolute;
-	right: 0px;
+	left: 0px;
 	top: 0px;
 	bottom: 0px;
 }
@@ -206,8 +209,8 @@
 .qrCodeTxt{
 	display: inline-block;
 	width: 70px;
-	height: 50px;
-	line-height: 50px;
+	height: 40px;
+	line-height: 40px;
 	color: #666666;
 	font-size: 16px;
 	text-align: center;
@@ -223,19 +226,17 @@
 
 .videoListTop{
     width: 100%;
-    height: 38px;
-    background-color: #F0F0F0;
-    box-shadow: 0px 0px 2px white inset;
-    -webkit-box-shadow: 0px 0px 2px white inset;
+    height: 60px;
+    background-color: #3b3b3b;
 }
 .unitLineV{
 	display: inline-block;
 	margin-left: 10px;
-	margin-top: 10px;
+	margin-top: 22px;
 	width: 6px;
 	height: 18px;
 	border-radius: 2px;
-	background-color: #1fb3ae;
+	background-color: #e98601;
 }
 .unitName{
 	display: inline-block;
@@ -247,14 +248,15 @@
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	font-size: 16px;
+	color: white;
 }
 .unitLineH{
 	display: block;
-	margin-left: 10px;
-	margin-top: 2px;
-	width: 330px;
-	height: 1px;
-	background-color: #d6d6d6;
+	margin-left: 0px;
+	margin-top: 12px;
+	width: 100%;
+	height: 8px;
+	background-color: #5f5f5f;
 }
 .unitLineH2{
     display: block;
@@ -265,24 +267,31 @@
     background-color: #FFFFFF;
 }
 .list{
-	margin-top: 4px;
+	position: absolute;
+	left: 0px;
+	top: 62px;
 	width: 100%;
-	background-color: #F0F0F0;
+	bottom: 40px;
+	background-color: #5f5f5f;
+	overflow: auto;
 }
 .videoItem{
-	margin-top: 3px;
+	margin-top: 0px;
 	width: 100%;
-	height: 90px;
+	height: 80px;
 	position: relative;
-	background-color: white;
+	background-color: #5f5f5f;
+	border-bottom: solid 1px black
+}
+.videoItem:hover{
+	background-color: #535353;
 }
 .videoItemIcon{
 	position: absolute;
 	left: 12px;
 	top: 8px;
-	width: 100px;
-	height: 76px;
-	border: solid 1px #d2d2d2;
+	width: 105px;
+	height: 60px;
 }
 .videoItenMask{
 	position: absolute;
@@ -299,8 +308,8 @@
 	top: 15px;
 	width: 214px;
 	height: 68px;
-	font-size: 16px;
-	color: #5c5c5c;
+	font-size: 14px;
+	color: #ffffff;
 }
 .videoItemTip{
 	position: absolute;
@@ -308,40 +317,44 @@
 	top: 7px;
 }
 .videoItemOn{
-	background-color: #dbdbdb;
+	background-color: #3b3b3b;
+}
+.videoItemOn .videoItemName{
+	color: #e98601;
 }
 
 /*二维码弹出框*/
 .erweiDivPanel{
-	width: 436px;
-	height: 132px;
+	width: 446px;
+	height: 180px;
 	position: absolute;
-	top:51px;
-	left: -284px;
+	top:41px;
+	left: 0px;
 	background: #FFFFFF;
     z-index: 4;
 }
 .erweiDivPanel  .erweiDivPanelL{
 	width:238px;
-	height: 100px;
+	height: 139px;
 	border: 1px solid  #e6e4e4;
 	border-right: none;
 	float: left;
 	font-size: 14px;
 	line-height: 25px;
 	text-indent:26px;
-	padding-top: 30px;
+	padding-top: 40px;
 }
 
 .erweiDivPanel  .erweiDivPanelR{
 	width: 196px;
-	height: 131px;
+	height: 170px;
 	border: 1px solid  #e6e4e4;
 	border-left:none;
-	border-top: none;
+	/*border-top: none;*/
 	float: left;
 	position: relative;
 	background: url(../img/shuxian.png) no-repeat 60px center;
+	padding: 10px 0px 0px 10px;
 }
 .erweiDivPanel  .erweiDivPanelR img{
 	position: absolute;

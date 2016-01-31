@@ -17,11 +17,10 @@
 			<a id="close" href="javascript:void(null)" onclick="closeWindow()"></a>
 			<div class="title">共享资源</div>
 		</div>
-		<div id="navigator" class="navigator"></div>
-		<div class="container">
-			<div class="unitTitle"></div>
-			<div class="line"></div>
-			<div class="list"></div>
+		<div class="unitHead">
+			<div id="navigator" class="navigator shadow"></div>
+		</div>
+		<div class="container shadow">
 		</div>
 		<script id="unitItemTmpl" type="text/x-jquery-tmpl">
 			<a href="javascript:void(0)">
@@ -32,7 +31,7 @@
 			${name} <span style="color:#1fb3ae;">${num}<span>			
 		</script>
 		<script id="videoItemTmpl" type="text/x-jquery-tmpl">
-			<a href="video.html?vid=${vid}&ccid=${ccid}" target="_blank">
+			<a href="video.html?vid=${vid}&ccid=${ccid}&uName=${unitName}" target="_blank">
 				<div class="videoItem">
 					<img class="videoIcon" src="${img}">
 						<div class="videoTitle">${name}</div>

@@ -269,33 +269,36 @@
 
 /*二维码弹出框*/
 .erweiDivPanel{
-    width: 436px;
-    height: 132px;
-    position: absolute;
-    background: #FFFFFF;
+	width: 426px;
+	height: 180px;
+	position: absolute;
+	top:51px;
+	left: -292px;
+	background: #FFFFFF;
     z-index: 4;
 }
 .erweiDivPanel  .erweiDivPanelL{
-    width:238px;
-    height: 100px;
-    border: 1px solid  #e6e4e4;
-    border-right: none;
-    float: left;
-    font-size: 14px;
-    line-height: 25px;
-    text-indent:26px;
-    padding-top: 30px;
+	width:238px;
+	height: 139px;
+	border: 1px solid  #e6e4e4;
+	border-right: none;
+	float: left;
+	font-size: 14px;
+	line-height: 25px;
+	text-indent:26px;
+	padding-top: 40px;
 }
 
 .erweiDivPanel  .erweiDivPanelR{
-    width: 196px;
-    height: 131px;
-    border: 1px solid  #e6e4e4;
-    border-left:none;
-    border-top: none;
-    float: left;
-    position: relative;
-    background: url(../img/shuxian.png) no-repeat 60px center;
+	width: 176px;
+	height: 169px;
+	border: 1px solid  #e6e4e4;
+	border-left:none;
+	/*border-top: none;*/
+	float: left;
+	position: relative;
+	background: url(../img/shuxian.png) no-repeat 60px center;
+	padding: 10px 0px 0px 10px;
 }
 .erweiDivPanel  .erweiDivPanelR img{
     position: absolute;

@@ -1,12 +1,22 @@
 a{
 	text-decoration: none;
 }
+.unitHead{
+	position: fixed;
+	left: 0px;
+	top: 44px;
+	width: 100%;
+	padding: 33px 0px 33px 0px;
+	background-color: #F5F5F5;
+	z-index: 4;
+}
 .navigator{
-	padding: 44px 0px 0px 0px;
-	max-width: 1100px;
+	max-width: 1024px;
 	width: 100%;
 	margin: 0 auto;
-	margin-top: 44px;
+	border-radius: 30px;
+	padding: 0;
+	background-color: white;
 }
 
 .navItem{
@@ -17,46 +27,55 @@ a{
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	height: 34px;
-	border-width: 1px;
-	border-style: solid;
-	border-color: #e2e2e2;
-	border-radius: 17px;
-	background-color: #ffffff;
+	/*border-width: 1px;*/
+	/*border-style: solid;*/
+	/*border-color: #e2e2e2;*/
+	/*border-radius: 17px;*/
+	/*background-color: #ffffff;*/
 	text-align: center;
 	line-height: 34px;
-	margin: 0px 35px 10px 35px;
+	margin: 10px 25px 10px 25px;
 	font-size: 18px;
 	color: #c6c6c6;
+	background: url(../img/v_nav_off.png) no-repeat center center;
+	background-size: 100% 100%;
 }
 
 .navOn{
-	border-color: #179995;
-	background-color: #1fb3ae;
+	/*border-color: #179995;*/
+	/*background-color: #1fb3ae;*/
 	color: white;
+	background-image: url(../img/v_nav_on.png);
 }
 
 .container{
 	max-width: 1024px;
 	width: 100%;
 	margin: 0 auto;
+	background-color: white;
+	padding: 20px 10px 10px 10px;
 }
 
 .unitTitle{
 	font-size: 22px;
-	margin-top: 20px;
+	margin-top: 0px;
 	color: #909090;
+	margin-left: 45px;
 }
-
 .line{
-	width: 78px;
-	height: 8px;
+	height: 2px;
+	background-color: #c4c4c4
+}
+.line2{
+	width: 150px;
+	height: 2px;
 	background-color: #1fb3ae;
-	border-radius: 2px;
+	margin-top: -2px;
 }
 
 .list{
 	margin-top: 4px;
-	border-top: solid 1px #c4c4c4;
+	margin-bottom: 25px;
 }
 
 .videoItem{
@@ -68,6 +87,7 @@ a{
 	margin-left: 2px;
 	margin-right: 1px;
 	display: inline-block;
+	background-color: white;
 }
 
 .videoIcon{

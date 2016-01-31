@@ -173,8 +173,11 @@ function getAudios() {
 				else
 				{
 					dataArr[i].className="audioItemB";
-				}
+				}				
 			}
+			dataArr.sort(function(a,b){
+				return a.name>b.name?1:-1;
+			});
 			setListData("#audioItemTmpl",".container",dataArr);	
 			$(".audioItem").dblclick(function(evt){
 				var aid=$(this).find(".audioPlay").attr("id");
@@ -392,15 +395,26 @@ function getAudios() {
 	
 	/**二维码*/
 	function changeScanCode (aid) {
-		var container=document.getElementById("erweiDivPanelR");
+		/*var container=document.getElementById("erweiDivPanelR");
 		var qrcode = new QRCode(container, {
 	        width : 130,//设置宽高
 	        height : 100
-	    });
+	    });*/
 		var mobileHost = window.location.href.split('?')[0];
-		mobileHost = mobileHost.replace('pc/audio.html', 'mobile/index.html');
-		var mobileUrl = mobileHost+"?userID="+userID+"&webAppId="+webAppId+"&timeOffset="+timeOffset+"&action=1&actionId="+bookid;
-	    console.log(mobileUrl);
-		qrcode.makeCode(mobileUrl);
+		mobileHost = mobileHost.replace('resource/audio.html', 'resourceM/index.html');
+		var mobileUrl = mobileHost+"?userID="+userID+"&appPwd="+appPwd+"&webAppId="+webAppId+"&timeOffset="+timeOffset+"&action=1&actionId="+bookid;
+	    //console.log(mobileUrl);
+		//qrcode.makeCode(mobileUrl);
+		
+		$("#erweiDivPanelR").empty();
+	    //var mobileUrl="http://popnew.cn/resourceM/index.html?userID=000000004b055a1a014b0569d87c0000&appPwd=4191AA0AA074F5B3DE3E83F4C29096E1&webAppId=207&timeOffset=-4856&action=0&actionId=CC4E7F50AD0DD1939C33DC5901307461";
+		var str = toUtf8(mobileUrl);
+		
+		$("#erweiDivPanelR").qrcode({
+			render: "table",
+			width: 130,
+			height:100,
+			text: str
+		});
 	}
 	

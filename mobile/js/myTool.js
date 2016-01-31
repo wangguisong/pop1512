@@ -53,6 +53,15 @@ function checkArrayIndexOf(){
     }
 }
 
+function isWeiXin(){
+	var ua = window.navigator.userAgent.toLowerCase();
+	if(ua.match(/MicroMessenger/i) == 'micromessenger'){
+		return true;
+	}else{
+		return false;
+	}
+} 
+
 var alertMask;
 var alertPanel;
 function showAlert(htmlstr){
@@ -260,15 +269,23 @@ var userID;
 var webAppId;
 var appPwd;
 var timeOffset;
-//var URL = "http://10.200.23.131/WebTemplet/actionService/gateway";
+//var URL = "http://10.200.23.123/WebTemplet/actionService/gateway";
+var server="";
+//var URL = "http://10.202.202.72/WebTemplet/actionService/gateway";
+/*var server="http://10.200.23.72/WebTemplet/file/";*/
 var URL = "http://popnew.cn/actionService/gateway";
-var server="http://kidsfile.popnew.cn/";
+//var server="http://kidsfile.popnew.cn/";
 
 //验证相关参数的方法
 function createRequestVars(){
+	if(!userID)timeOffset=getCookie("userID");
+	if(!webAppId)timeOffset=getCookie("webAppId");
+	if(!appPwd)timeOffset=getCookie("appPwd");
+	if(!timeOffset)timeOffset=getCookie("timeOffset");
+	
     var timeAdd = new Date().getTime() + parseInt(timeOffset);
     var str = webAppId + appPwd + userID + timeAdd;
-    var md5str = $.md5(str);
+    var md5str = $.md5(str.toString());
 
     var data = {};
     data.userId = userID;

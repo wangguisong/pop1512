@@ -1,6 +1,7 @@
 
-//server="http://10.200.23.123:80/WebTemplet/file/";
-var server="http://kidsfile.popnew.cn/";
+//var server="http://10.200.23.123:80/WebTemplet/file/";
+var server="";
+//var server="http://kidsfile.popnew.cn/";
 
 function showBanner(){
 	Qfast.add('widgets', { path: "js/terminator2.2.min.js", type: "js", requires: ['fx'] });  

@@ -16,10 +16,18 @@ var curBookId;
 var curVideoUnits;
 var curVideoUnitIndex;
 
+function layoutAudioMain(){
+	var w = $(window).width();
+	$('.audioMainCover').css('left', (w-168)/2+'px');
+	$('.audioMainPlayPause').css('left', (w-64)/2+'px');
+}
+
 $(document).ready(function(){
-	//userID = getQuery("userID");
-	//webAppId = getQuery("webAppId");
-	//timeOffset = getQuery("timeOffset");
+	layoutAudioMain();
+	userID = getQuery("userID");
+	webAppId = getQuery("webAppId");
+	timeOffset = getQuery("timeOffset");
+	appPwd= getQuery("appPwd");
 	var action = getQuery('action');
 	var actionId = getQuery('actionId');
 	var actionName = getQuery('actionName');
@@ -27,10 +35,10 @@ $(document).ready(function(){
 		actionName = decodeURIComponent(actionName);
 	}
 	
-	userID = '000000004b0b102f014b1084ef2c0002';
-	webAppId = 207;
-	timeOffset = '1453384476274';
-	appPwd = '4191AA0AA074F5B3DE3E83F4C29096E1';
+//	userID = '000000004b0b102f014b1084ef2c0002';
+//	webAppId = 207;
+//	timeOffset = '1453384476274';
+//	appPwd = '4191AA0AA074F5B3DE3E83F4C29096E1';
 	setCookie("userID",userID);
 	setCookie("webAppId",webAppId);
 	setCookie("timeOffset",timeOffset);
@@ -56,6 +64,32 @@ $(document).ready(function(){
 		}
 	});
 	
+	$('.navShare').click(function(){
+		if(isWeiXin()){
+			$('.shareContent img').attr('src', 'img/share_wechat.png');
+		}else{
+			$('.shareContent img').attr('src', 'img/share_normal.png');
+		}
+		$('.shareContent').show();
+	});
+	
+	$('.shareContent').click(function(){
+		$('.shareContent').hide();
+	});
+	
+	$('#audioHeader').click(function(){
+		var h = $(window).height();
+		$('.audioMainContent').css('top', h+"px");
+		$('.audioMainContent').css('bottom', -h+"px");
+		$('.audioMainContent').show();
+		$('.audioMainContent').animate({'top':0,'bottom':0}, 300);
+	});
+	$('.audioMainClose').click(function(){
+		var h = $(window).height();
+		$('.audioMainContent').animate({'top':h,'bottom':-h}, 300, 'linear', function(){
+			$('.audioMainContent').hide();
+		});
+	})
 	function initVideoBookList(){
 		audio.pause();
 		$('.navVideo').addClass('navOn');
@@ -115,14 +149,29 @@ $(document).ready(function(){
 	}
 	
 	function setBookList(type){
-		$('.catTitle').text('Pop Ready');
-		$('.indexList').empty();
+		bookList.sort(function(a,b){
+			return a.name>b.name?1:-1;
+		});
+		$(".indexContent").empty();
+		var needColumn=true;
+		var curColumn="";
+		var list;
+		//$('.catTitle').text('Pop Ready');
+		//$('.indexList').empty();
 		bookList.forEach(function(book){
+			if(curColumn!=book.name.substr(0,10))
+			{
+				curColumn=book.name.substr(0,10);
+				$(".indexContent").append('<div class="catTitle">'+curColumn+'</div>');
+				$(".indexContent").append('<div class="indexLine"></div>');
+				list=$('<div class="indexList"></div>');
+				list.appendTo($(".indexContent"));				
+			}
 			if(book.type!=type) return;
 			var item = $("<div id='"+book.id+"' class='bookItem'><img class='bookCover' src='"+
 				server+book.img+"'/><div class='bookTitle'>"+
 				book.name+"</div></div>");
-			$('.indexList').append(item);
+			list.append(item);
 			item.click(function(){
 				if($('.navVideo').hasClass('navOn')){
 					curBookId = $(this).attr('id');
@@ -180,6 +229,14 @@ $(document).ready(function(){
 	}
 	
 	function playAudio(idx){
+		if($(".audioPlayPause").hasClass('audioPause')){
+			$(".audioPlayPause").removeClass('audioPause');
+		}
+		$(".audioPlayPause").addClass('audioPlay');
+		if($(".audioMainPlayPause").hasClass('audioStatePause')){
+			$(".audioMainPlayPause").removeClass('audioStatePause');
+		}
+		$(".audioMainPlayPause").addClass('audioStatePlay');
 		var listItems = $('.audioItem');
 		for(var i=0; i<listItems.length; i++){
 			var domItem = listItems[i];
@@ -193,11 +250,20 @@ $(document).ready(function(){
 		}
 		var data = audioArr[idx];
 		$('.audioTitle').text(data.name);
+		$('.audioMainTitle').text(data.name);
 		audio.src = server+data.path;
 		audio.load();
 	}
 	
 	$('.audioPlayPause').click(function(evt){
+		if(audio.paused){
+			audio.play();
+		}else{
+			audio.pause();
+		}
+		evt.stopPropagation();
+	});
+	$('.audioMainPlayPause').click(function(evt){
 		if(audio.paused){
 			audio.play();
 		}else{
@@ -210,6 +276,10 @@ $(document).ready(function(){
 			$(".audioPlayPause").removeClass('audioPlay');
 		}
 		$(".audioPlayPause").addClass('audioPause');
+		if($(".audioMainPlayPause").hasClass('audioStatePlay')){
+			$(".audioMainPlayPause").removeClass('audioStatePlay');
+		}
+		$(".audioMainPlayPause").addClass('audioStatePause');
 	}
 		
 	audio.onpause = function(evt){
@@ -217,6 +287,10 @@ $(document).ready(function(){
 			$(".audioPlayPause").removeClass('audioPause');
 		}
 		$(".audioPlayPause").addClass('audioPlay');
+		if($(".audioMainPlayPause").hasClass('audioStatePause')){
+			$(".audioMainPlayPause").removeClass('audioStatePause');
+		}
+		$(".audioMainPlayPause").addClass('audioStatePlay');
 	}
 	
 	audio.ontimeupdate = function(evt){
@@ -224,6 +298,14 @@ $(document).ready(function(){
 		var w = $('.audioTimeLine').width();
 		var ww = v.currentTime/v.duration*w;
 		$('.audioTimeTrack').css('width', ww+"px");
+		
+		var mw = $(window).width();
+		var mww = v.currentTime/v.duration*mw;
+		$('.audioMainPlayed').css('width', mww+'px');
+		$('.audioMainThumb').css('left', (mww-5)+'px');
+		
+		$(".audioMainTimeTotal").text(formatTime(evt.currentTarget.duration));
+		$(".audioMainTimePlayed").text(formatTime(evt.currentTarget.currentTime));
 	}
 		
 	audio.onended = function(evt){
@@ -233,11 +315,69 @@ $(document).ready(function(){
 			$(".audioPlayPause").removeClass('audioPause');
 		}
 		$(".audioPlayPause").addClass('audioPlay');
+		if($(".audioMainPlayPause").hasClass('audioStatePause')){
+			$(".audioMainPlayPause").removeClass('audioStatePause');
+		}
+		$(".audioMainPlayPause").addClass('audioStatePlay');
 			
 		var cur = getPlayedIndex();
 		if(cur<$('.audioItem').length-1){
 			playAudio(cur+1);
 		}
+	}
+	
+	var oldTimeX;
+	$('.audioMainThumb')[0].addEventListener('touchstart',function(evt){
+		oldTimeX = evt.clientX;
+		document.addEventListener('touchmove', mousemovetime);
+		document.addEventListener('touchend', mouseuptime);
+	});
+	function mousemovetime(evt){
+		var x = evt.clientX;
+		var thumbX = parseInt($('.audioMainThumb').css('left'));
+		var newX = thumbX + (x-oldTimeX);
+		oldTimeX = x;
+		var minX = parseInt($('.audioMainTrack').css('left'))-5;
+		var maxX = parseInt($('.audioMainTrack').css('left'))+$('.audioMainTrack').width()-5;
+		if(newX<minX){
+			newX = minX;
+		}
+		if(newX>maxX){
+			newX = maxX;
+		}
+		$('.audioMainThumb').css('left', newX+'px');
+		var v = (newX-minX)/(maxX-minX);
+		var w = $('.audioMainTrack').width();
+		var ww = v*w;
+		$('.audioMainPlayed').css('width', ww+"px");
+		var t = parseFloat(v*audio.duration);
+		try{
+			audio.currentTime = t;
+		}catch(e){
+			console.log(e.message)
+		}
+	}
+	
+	function mouseuptime(evt){
+		document.removeEventListener('mousemove', mousemovetime);
+		document.removeEventListener('mouseup', mouseuptime);
+	}
+	
+	function formatTime(time){
+		time = parseInt(time);
+		var sec = parseInt(time%60);
+		var min = parseInt(time/60);
+		var ret = "";
+		if(min<10){
+			ret += "0";
+		}
+		ret += min;
+		ret += ":";
+		if(sec<10){
+			ret += "0";
+		}
+		ret += sec;
+		return ret;
 	}
 	
 	function getPlayedIndex(){
@@ -257,9 +397,23 @@ $(document).ready(function(){
 		}
 	});
 	
-	$('#audioHeader .left').click(function(){
+	$('.audioMainNext').click(function(){
+		var cur = getPlayedIndex();
+		if(cur<$('.audioItem').length-1){
+			playAudio(cur+1);
+		}
+	});
+	$('.audioMainPrev').click(function(){
+		var cur = getPlayedIndex();
+		if(cur>0){
+			playAudio(cur-1);
+		}
+	});
+	
+	$('#audioHeader .left').click(function(evt){
 		audio.pause();
 		initAudioBookList();
+		evt.stopPropagation();
 	});
 	
 	function initVideo(){
