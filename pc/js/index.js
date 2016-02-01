@@ -1,13 +1,13 @@
 
 $(function(){
-//	userID = getQuery("userID");
-//	webAppId = getQuery("webAppId");
-//	timeOffset = getQuery("timeOffset");
-//	appPwd= getQuery("appPwd");
-	userID = '000000004b0b102f014b1084ef2c0002';
-	webAppId = 207;
-	timeOffset = '1453384476274';
-	appPwd = '4191AA0AA074F5B3DE3E83F4C29096E1';
+	userID = getQuery("userID");
+	webAppId = getQuery("webAppId");
+	timeOffset = getQuery("timeOffset");
+	appPwd= getQuery("appPwd");
+//	userID = '000000004b0b102f014b1084ef2c0002';
+//	webAppId = 207;
+//	timeOffset = '1453384476274';
+//	appPwd = '4191AA0AA074F5B3DE3E83F4C29096E1';
 	setCookie("userID",userID);
 	setCookie("webAppId",webAppId);
 	setCookie("timeOffset",timeOffset);
