@@ -2,9 +2,8 @@ a{
 	text-decoration: none;
 }
 .unitHead{
-	position: fixed;
-	left: 0px;
-	top: 44px;
+	margin-left: 0px;
+	margin-top: 44px;
 	width: 100%;
 	padding: 33px 0px 33px 0px;
 	background-color: #F5F5F5;

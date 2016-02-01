@@ -10,8 +10,8 @@ p{
 	border: 0;
 }
 .shadow{
-    box-shadow: 0px 0px 2px gray;
-    -webkit-box-shadow: 0px 0px 2px gray;
+    box-shadow: 0px 0px 2px #dbdbdb;
+    -webkit-box-shadow: 0px 0px 2px #dbdbdb;
 }
 
 .head{

@@ -14,10 +14,13 @@ $(function(){
 	getUnits ();
 	
 	$(window).resize(layoutContainer);
-	$(document).scroll(function(){
+	document.onscroll = function(){
 		if(isMoving) return;
-		var st = $('body').scrollTop();
-		var top = parseInt($('.container').css('margin-top'));
+		var st = $('html').scrollTop();
+		if(st==0){
+			st = $('body').scrollTop();
+		}
+		var top = parseInt($('.unitHead').height())+parseInt($('.unitHead').css('margin-top'));
 		var list = $('.unitTitle');
 		for(var i=0; i<list.length; i++){
 			var it = $(list[i]).offset().top;
@@ -34,19 +37,19 @@ $(function(){
 				break;
 			}
 		}
-	});
+	}
 })
 
 function gotoElementByClass(obj){
-	var top = parseInt($('.container').css('margin-top'));
-	var _targetTop = $('.'+obj).offset().top-top-50;
+	var top = parseInt($('.unitHead').height())+parseInt($('.unitHead').css('margin-top'));
+	var _targetTop = $('.'+obj).offset().top-top;
 	isMoving = true;
     jQuery("html,body").animate({scrollTop:_targetTop},300,'linear',function(){isMoving=false;});
 }
 
 function layoutContainer(){
-	var h = $('#navigator').height();
-	$('.container').css('margin-top', (h+115)+'px');
+	//var h = $('#navigator').height();
+	//$('.container').css('margin-top', (h+115)+'px');
 }
 
 function getUnits () {
@@ -78,8 +81,8 @@ function getUnits () {
 				var arr=[obj];
 				setListData("#titleTmpl",".uTitle"+i,arr);	
 				getVideos(unitName, '.list'+i);
+				$($('.navItem')[0]).addClass("navOn");
 			}
-			firstUnit.trigger("click");
 		}
        },
        function(msg){
